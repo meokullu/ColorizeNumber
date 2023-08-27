@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ColorizeNumber</name>
+    </assembly>
+    <members>
+        <member name="T:ColorizeNumber.ColorizeNumber">
+            <summary>
+            ColorizeNumber, helps to create image data with number-color matching actions.
+            </summary>
+        </member>
+        <member name="T:ColorizeNumber.ColorizeNumber.Frame">
+            <summary>
+            Frame holds array of RGBColors.
+            </summary>
+        </member>
+        <member name="F:ColorizeNumber.ColorizeNumber.Frame.colorList">
+            <summary>
+            Array of RGBColor
+            </summary>
+        </member>
+        <member name="M:ColorizeNumber.ColorizeNumber.Frame.#ctor(System.Int32)">
+            <summary>
+            Constructor with size of array.
+            </summary>
+            <param name="resolution">Resolution of the frame. It is size of array which is multiplied width and height.</param>
+        </member>
+        <member name="T:ColorizeNumber.ColorizeNumber.RGBColor">
+            <summary>
+            Simple color class. RGBColor holds red, green and blue on byte data type.
+            </summary>
+        </member>
+        <member name="F:ColorizeNumber.ColorizeNumber.RGBColor.red">
+            <summary>
+            Variable holds pixel's data for red color. [0-255]
+            </summary>
+        </member>
+        <member name="F:ColorizeNumber.ColorizeNumber.RGBColor.green">
+            <summary>
+            Variable holds pixel's data for green color. [0-255]
+            </summary>
+        </member>
+        <member name="F:ColorizeNumber.ColorizeNumber.RGBColor.blue">
+            <summary>
+            Variable holds pixel's data for blue color. [0-255]
+            </summary>
+        </member>
+        <member name="M:ColorizeNumber.ColorizeNumber.RGBColor.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Constructor of RGBColor.
+            </summary>
+            <param name="red">Red component of RGBColor.</param>
+            <param name="green">Green component of RGBColor.</param>
+            <param name="blue">Blue component of RGBColor.</param>
+        </member>
+        <member name="M:ColorizeNumber.ColorizeNumber.CreateFrameFromData(System.String,System.Int32,System.Int32,System.Func{System.Byte,ColorizeNumber.ColorizeNumber.RGBColor})">
+            <summary>
+            Returns a frame with changing numeric value from given numericText via provided colorizeFunction.
+            </summary>
+            <param name="numericText">String data of numeric values.</param>
+            <param name="width">Width of frame.</param>
+            <param name="height">Height of frame.</param>
+            <param name="colorizeFunction"></param>
+            <returns>Returns frame.</returns>
+            <exception cref="T:System.ArgumentException">Throws expection if numberText data is null or empty.</exception>
+            <exception cref="T:System.ArgumentNullException">Throws execption if colorizeFunction is not provided.</exception>
+        </member>
+        <member name="M:ColorizeNumber.ColorizeNumber.ColorizeFunc(System.Byte)">
+            <summary>
+            Default colorize function.
+            </summary>
+            <param name="number">A number whose value will be converted to color value.</param>
+            <returns>Returns RGBColor.</returns>
+        </member>
+        <member name="M:ColorizeNumber.ColorizeNumber.CreateBitmap(ColorizeNumber.ColorizeNumber.Frame,System.Int32,System.Int32)">
+            <summary>
+            Return Bitmap with using color data of given frame's array.
+            </summary>
+            <param name="frame">Frame whose RGBColor array will be used to create image.</param>
+            <param name="width">Width of bitmap.</param>
+            <param name="height">Height of bitmap.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
