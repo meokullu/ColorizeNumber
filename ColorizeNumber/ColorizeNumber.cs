@@ -152,6 +152,37 @@ namespace ColorizeNumber
         }
 
         /// <summary>
+        /// Returns grayscale color by rate of number between 0 and 9.
+        /// </summary>
+        /// <param name="number">A number whose value will be converted to color value.</param>
+        /// <returns>Returns RGBColor.</returns>
+        public static RGBColor ColorizeFuncByRate(byte number)
+        {
+            // Creates a RGBColor based on number as percentage of color.
+            return new RGBColor(red: (byte)((double)number / 9 * 255), green: (byte)((double)number / 9 * 255), blue: (byte)((double)number / 9 * 255));
+        }
+
+        /// <summary>
+        /// Returns two different colors based on its duality. 
+        /// </summary>
+        /// <param name="number">A number whose value will be converted to color value.</param>
+        /// <returns>Returns RGBColor.</returns>
+        public static RGBColor ColorizeFuncByDuality(byte number)
+        {
+            // Checking if number is even.
+            if (number % 2 == 0)
+            {
+                // Creating and returning black color.
+                return new RGBColor(red: 0, green: 0, blue: 0);
+            }
+            else
+            {
+                // Creating and returning light green color.
+                return new RGBColor(red: 144, green: 238, blue: 144);
+            }
+        }
+
+        /// <summary>
         /// Return Bitmap with using color data of given frame's array.
         /// </summary>
         /// <param name="frame">Frame whose RGBColor array will be used to create image.</param>
