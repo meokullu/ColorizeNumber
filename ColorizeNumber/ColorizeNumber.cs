@@ -66,6 +66,50 @@ namespace ColorizeNumber
                 this.Green = green;
                 this.Blue = blue;
             }
+
+            /// <summary>
+            /// RGBColor equality comparer derived from IEqualityComparer interface.
+            /// </summary>
+            public class RGBColorEqualityComparer : IEqualityComparer<RGBColor>
+            {
+                /// <summary>
+                /// Compares two RGBColor based on their red, green and blue color.
+                /// </summary>
+                /// <param name="x">First color to compare.</param>
+                /// <param name="y">Second color to compare.</param>
+                /// <returns>Returns true if colors are same, returns false if colors are different or one of the given color is null.</returns>
+                bool IEqualityComparer<RGBColor>.Equals(RGBColor x, RGBColor y)
+                {
+                    // Checking if either of color is null.
+                    if (x == null || y == null)
+                    {
+                        // Returning false to indicate at least one of colors is null.
+                        return false;
+                    }
+                    // Checking if two given color's property values are same.
+                    else if (x.Red == y.Red && x.Green == y.Green && x.Blue == y.Blue)
+                    {
+                        // Returning true to indicate colors are same.
+                        return true;
+                    }
+                    else
+                    {
+                        // Returning false to indicate colors are different.
+                        return false;
+                    }
+                }
+
+                /// <summary>
+                /// Returning hashcode with creating tuple of RGBColor's red, green and blue values.
+                /// </summary>
+                /// <param name="obj"></param>
+                /// <returns>int value of hashcode.</returns>
+                int IEqualityComparer<RGBColor>.GetHashCode(RGBColor obj)
+                {
+                    // Returning hash code.
+                    return Tuple.Create(obj.Red, obj.Green, obj.Blue).GetHashCode();
+                }
+            }
         }
 
         #endregion Class definitions
