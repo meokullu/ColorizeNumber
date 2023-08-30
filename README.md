@@ -112,6 +112,7 @@ private static RGBColor MyColorizeFunc(byte number)
   * Fixed naming vialotions.
   * Added RGBComparer.
   * Added GetBitmap() method.
+  * Added ColorizeFuncByRatio() and ColorizeFuncByDuality().
 
 * 1.0.0 Initial Release
 
