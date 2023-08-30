@@ -232,8 +232,8 @@ namespace ColorizeNumber
         /// <param name="frame">Frame whose RGBColor array will be used to create image.</param>
         /// <param name="width">Width of bitmap.</param>
         /// <param name="height">Height of bitmap.</param>
-        /// <returns></returns>
-        [SupportedOSPlatform("windows")]        
+        /// <returns>Returns bitmap.</returns>
+        [SupportedOSPlatform("windows")]
         public static Bitmap CreateBitmap(Frame frame, int width, int height)
         {
             // byte array for data. Each pixels hold three components of color.
@@ -254,7 +254,7 @@ namespace ColorizeNumber
                 _rgbColor = frame.ColorList[i];
 
                 // ! Order of RGB components is BGR instead of RGB which is alphabetical.
-                
+
                 // Index for blue component of RGBColor.
                 _dataBuffer[_multiplier] = _rgbColor.Blue;
 
@@ -288,6 +288,49 @@ namespace ColorizeNumber
 
             // Returning bitmap.
             return _bitmap;
+        }
+
+        /// <summary>
+        /// Creates Frame with using colors of Bitmap.
+        /// </summary>
+        /// <param name="bitmap">Bitmap whose colors will be used to create frame.</param>
+        /// <returns>Returns frame.</returns>
+        [SupportedOSPlatform("windows")]
+        public static Frame GetBitmap(Bitmap bitmap)
+        {
+            // Creating frame with using given bitmaps width and height.
+            Frame _frame = new Frame(resolution: bitmap.Width * bitmap.Height);
+
+            // Creating rectange with using given bitmaps width and height.
+            Rectangle _rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+
+            // Creating bitmap data with lock bits.
+            BitmapData _data = bitmap.LockBits(_rect, ImageLockMode.ReadOnly, bitmap.PixelFormat);
+
+            // Getting depth of bitmap.
+            int _depth = Image.GetPixelFormatSize(_data.PixelFormat) / 8;
+
+            // Creating buffer with resolution.
+            byte[] _buffer = new byte[_data.Width * _data.Height * _depth];
+
+            // Copying pixels from bitmap's data scanning into buffer.
+            Marshal.Copy(_data.Scan0, _buffer, 0, _buffer.Length);
+
+            // Unlocking bits for bitmap.
+            bitmap.UnlockBits(_data);
+
+            // Loop for filling Colorlist of frame via buffer data.
+            for (int i = 0; i < bitmap.Width * bitmap.Height; i++)
+            {
+                // Offset data for each pixels. Depth indicates the length of data used for each pixel.
+                int _offset = i * _depth;
+
+                // Filling with creating RGBColor. Data are sorted by blue, green, red alphabetically.
+                _frame.ColorList[i] = new RGBColor(red: _buffer[_offset + 2], green: _buffer[_offset + 1], blue: _buffer[_offset + 0]);
+            }
+
+            // Returning frame.
+            return _frame;
         }
     }
 }
