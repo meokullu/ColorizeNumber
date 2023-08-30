@@ -62,6 +62,15 @@ Returns Bitmap which is filled with given colorList from frame.
 
 * int height: Height of bitmap.
 
+
+ ```
+GetBitmap(Frame frame)
+```
+Returns Frame which is created with given frame.
+
+* Bitmap bitmap: A bitmap.
+
+
 ## Example Usage
 
 ### Testing ColorizeNumber
@@ -98,6 +107,11 @@ private static RGBColor MyColorizeFunc(byte number)
 ```
 
 ## Version History
+
+* 1.1.0
+  * Fixed naming vialotions.
+  * Added RGBComparer.
+  * Added GetBitmap() method.
 
 * 1.0.0 Initial Release
 
