@@ -20,7 +20,7 @@ namespace ColorizeNumber
             /// <summary>
             /// Array of RGBColor
             /// </summary>
-            public RGBColor[] colorList;
+            public RGBColor[] ColorList;
 
             /// <summary>
             /// Constructor with size of array.
@@ -29,7 +29,7 @@ namespace ColorizeNumber
             public Frame(int resolution)
             {
                 // Set an array of RGBColor with specified size.
-                colorList = new RGBColor[resolution];
+                ColorList = new RGBColor[resolution];
             }
         }
 
@@ -41,17 +41,17 @@ namespace ColorizeNumber
             /// <summary>
             /// Variable holds pixel's data for red color. [0-255]
             /// </summary>
-            public byte red;
+            public byte Red;
 
             /// <summary>
             /// Variable holds pixel's data for green color. [0-255]
             /// </summary>
-            public byte green;
+            public byte Green;
 
             /// <summary>
             /// Variable holds pixel's data for blue color. [0-255]
             /// </summary>
-            public byte blue;
+            public byte Blue;
 
             /// <summary>
             /// Constructor of RGBColor.
@@ -62,9 +62,9 @@ namespace ColorizeNumber
             public RGBColor(byte red, byte green, byte blue)
             {
                 // Assigning values.
-                this.red = red;
-                this.green = green;
-                this.blue = blue;
+                this.Red = red;
+                this.Green = green;
+                this.Blue = blue;
             }
         }
 
@@ -106,7 +106,7 @@ namespace ColorizeNumber
             for (int i = 0; i < _dataArray.Length; i++)
             {
                 // Assigning value of array with color value by colorize function.
-                _frame.colorList[i] = colorizeFunction((byte)_dataArray[i]);
+                _frame.ColorList[i] = colorizeFunction((byte)_dataArray[i]);
             }
 
             // Returning frame.
@@ -162,7 +162,7 @@ namespace ColorizeNumber
         public static Bitmap CreateBitmap(Frame frame, int width, int height)
         {
             // byte array for data. Each pixels hold three components of color.
-            byte[] dataBuffer = new byte[width * height * 3];
+            byte[] _dataBuffer = new byte[width * height * 3];
 
             // RGBColor variable for loop.
             RGBColor _rgbColor;
@@ -170,36 +170,36 @@ namespace ColorizeNumber
             // Each RGBColor uses three byte length of data. This variable is multiplied index of colorList with three.
             int _multiplier;
 
-            for (int i = 0; i < frame.colorList.Length; i++)
+            for (int i = 0; i < frame.ColorList.Length; i++)
             {
                 // Index for dataBuffer.
                 _multiplier = i * 3;
 
                 // RGBColor variable.
-                _rgbColor = frame.colorList[i];
+                _rgbColor = frame.ColorList[i];
 
                 // ! Order of RGB components is BGR instead of RGB which is alphabetical.
                 
                 // Index for blue component of RGBColor.
-                dataBuffer[_multiplier] = _rgbColor.blue;
+                _dataBuffer[_multiplier] = _rgbColor.Blue;
 
                 // Index for green component of RGBColor.
-                dataBuffer[_multiplier + 1] = _rgbColor.green;
+                _dataBuffer[_multiplier + 1] = _rgbColor.Green;
 
                 // Index for red component of RGBColor.
-                dataBuffer[_multiplier + 2] = _rgbColor.red;
+                _dataBuffer[_multiplier + 2] = _rgbColor.Red;
             }
 
             // Creating bitmap with specified width and height.
-            Bitmap bitmap = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            Bitmap _bitmap = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 
             // Creating bitmap data with specified width and height.
-            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, bitmap.PixelFormat);
+            BitmapData _bmpData = _bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, _bitmap.PixelFormat);
 
             try
             {
                 // Copying data from dataBuffer to bmpData with specified lenght.
-                Marshal.Copy(dataBuffer, 0, bmpData.Scan0, dataBuffer.Length);
+                Marshal.Copy(_dataBuffer, 0, _bmpData.Scan0, _dataBuffer.Length);
             }
             catch (Exception ex)
             {
@@ -209,10 +209,10 @@ namespace ColorizeNumber
             //TODO: Free memory?
 
             // Unlocking bits of bitmap.
-            bitmap.UnlockBits(bmpData);
+            _bitmap.UnlockBits(_bmpData);
 
             // Returning bitmap.
-            return bitmap;
+            return _bitmap;
         }
     }
 }
