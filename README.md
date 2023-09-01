@@ -108,6 +108,11 @@ private static RGBColor MyColorizeFunc(byte number)
 
 ## Version History
 
+* 1.1.1
+  * Fixed naming vialotions.
+  * ColorizeNumber splitted into two partial class. Default number-color matching methods are moved to new paritial class.
+  * ColorizeNumber.dll and ColorizeNumber.xml in OutputDLL folder is updated.
+
 * 1.1.0
   * Fixed naming vialotions.
   * Added RGBComparer.
@@ -117,7 +122,7 @@ private static RGBColor MyColorizeFunc(byte number)
 * 1.0.0 Initial Release
 
 ## Licence
-No licence is required.
+[MIT license](https://github.com/meokullu/ColorizeNumber/blob/master/LICENSE)
 
 ## Authors
 Twitter: Enes Okullu [@enesokullu](https://twitter.com/EnesOkullu)

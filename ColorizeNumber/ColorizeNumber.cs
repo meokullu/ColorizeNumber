@@ -8,7 +8,7 @@ namespace ColorizeNumber
     /// <summary>
     /// ColorizeNumber, helps to create image data with number-color matching actions.
     /// </summary>
-    public class ColorizeNumber
+    public partial class ColorizeNumber
     {
         #region Class definitons
 
@@ -141,22 +141,135 @@ namespace ColorizeNumber
             }
 
             // Creating int array from string with changing char value to int value.
-            int[] _dataArray = numericText.Select(p => (int)char.GetNumericValue(p)).ToArray();
+            int[] dataArray = numericText.Select(p => (int)char.GetNumericValue(p)).ToArray();
 
             // Creating a frame with given resolution. Resolution is used for specify size of the array on Frame.
-            Frame _frame = new Frame(resolution: width * height);
+            Frame frame = new Frame(resolution: width * height);
 
             // Loop for colorizing every value on given data.
-            for (int i = 0; i < _dataArray.Length; i++)
+            for (int i = 0; i < dataArray.Length; i++)
             {
                 // Assigning value of array with color value by colorize function.
-                _frame.ColorList[i] = colorizeFunction((byte)_dataArray[i]);
+                frame.ColorList[i] = colorizeFunction((byte)dataArray[i]);
             }
 
             // Returning frame.
-            return _frame;
+            return frame;
         }
 
+        /// <summary>
+        /// Return Bitmap with using color data of given frame's array.
+        /// </summary>
+        /// <param name="frame">Frame whose RGBColor array will be used to create image.</param>
+        /// <param name="width">Width of bitmap.</param>
+        /// <param name="height">Height of bitmap.</param>
+        /// <returns>Returns bitmap.</returns>
+        [SupportedOSPlatform("windows")]
+        public static Bitmap CreateBitmap(Frame frame, int width, int height)
+        {
+            // byte array for data. Each pixels hold three components of color.
+            byte[] dataBuffer = new byte[width * height * 3];
+
+            // RGBColor variable for loop.
+            RGBColor rgbColor;
+
+            // Each RGBColor uses three byte length of data. This variable is multiplied index of colorList with three.
+            int multiplier;
+
+            for (int i = 0; i < frame.ColorList.Length; i++)
+            {
+                // Index for dataBuffer.
+                multiplier = i * 3;
+
+                // RGBColor variable.
+                rgbColor = frame.ColorList[i];
+
+                // ! Order of RGB components is BGR instead of RGB which is alphabetical.
+
+                // Index for blue component of RGBColor.
+                dataBuffer[multiplier] = rgbColor.Blue;
+
+                // Index for green component of RGBColor.
+                dataBuffer[multiplier + 1] = rgbColor.Green;
+
+                // Index for red component of RGBColor.
+                dataBuffer[multiplier + 2] = rgbColor.Red;
+            }
+
+            // Creating bitmap with specified width and height.
+            Bitmap bitmap = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+
+            // Creating bitmap data with specified width and height.
+            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, bitmap.PixelFormat);
+
+            try
+            {
+                // Copying data from dataBuffer to bmpData with specified lenght.
+                Marshal.Copy(dataBuffer, 0, bmpData.Scan0, dataBuffer.Length);
+            }
+            catch (Exception ex)
+            {
+                // Throwing exception.
+                throw ex;
+            }
+            //TODO: Free memory?
+
+            // Unlocking bits of bitmap.
+            bitmap.UnlockBits(bmpData);
+
+            // Returning bitmap.
+            return bitmap;
+        }
+
+        /// <summary>
+        /// Creates Frame with using colors of Bitmap.
+        /// </summary>
+        /// <param name="bitmap">Bitmap whose colors will be used to create frame.</param>
+        /// <returns>Returns frame.</returns>
+        [SupportedOSPlatform("windows")]
+        public static Frame GetBitmap(Bitmap bitmap)
+        {
+            // Creating frame with using given bitmaps width and height.
+            Frame frame = new Frame(resolution: bitmap.Width * bitmap.Height);
+
+            // Creating rectange with using given bitmaps width and height.
+            Rectangle rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+
+            // Creating bitmap data with lock bits.
+            BitmapData data = bitmap.LockBits(rect, ImageLockMode.ReadOnly, bitmap.PixelFormat);
+
+            // Getting depth of bitmap.
+            int depth = Image.GetPixelFormatSize(data.PixelFormat) / 8;
+
+            // Creating buffer with resolution.
+            byte[] buffer = new byte[data.Width * data.Height * depth];
+
+            // Copying pixels from bitmap's data scanning into buffer.
+            Marshal.Copy(data.Scan0, buffer, 0, buffer.Length);
+
+            // Unlocking bits for bitmap.
+            bitmap.UnlockBits(data);
+
+            // Loop for filling Colorlist of frame via buffer data.
+            for (int i = 0; i < bitmap.Width * bitmap.Height; i++)
+            {
+                // Offset data for each pixels. Depth indicates the length of data used for each pixel.
+                int offset = i * depth;
+
+                // Filling with creating RGBColor. Data are sorted by blue, green, red alphabetically.
+                frame.ColorList[i] = new RGBColor(red: buffer[offset + 2], green: buffer[offset + 1], blue: buffer[offset + 0]);
+            }
+
+            // Returning frame.
+            return frame;
+        }
+    }
+
+    /// <summary>
+    /// This class offers default number-color matching methods.
+    /// </summary>
+    public partial class ColorizeNumber
+    {
         /// <summary>
         /// Default colorize function.
         /// </summary>
@@ -165,31 +278,31 @@ namespace ColorizeNumber
         public static RGBColor ColorizeFunc(byte number)
         {
             // Zero value.
-            const byte _zero = 0;
+            const byte zero = 0;
 
             // Switch case for every number on base 10, with default case.
             switch (number)
             {
                 case 0: // Black
-                    return new RGBColor(red: _zero, green: _zero, blue: _zero);
+                    return new RGBColor(red: zero, green: zero, blue: zero);
                 case 1: // Dark red
-                    return new RGBColor(red: 85, green: _zero, blue: _zero);
+                    return new RGBColor(red: 85, green: zero, blue: zero);
                 case 2: // Red
-                    return new RGBColor(red: 170, green: _zero, blue: _zero);
+                    return new RGBColor(red: 170, green: zero, blue: zero);
                 case 3: // Light red
-                    return new RGBColor(red: 255, green: _zero, blue: _zero);
+                    return new RGBColor(red: 255, green: zero, blue: zero);
                 case 4: // Dark green
-                    return new RGBColor(red: _zero, green: 85, blue: _zero);
+                    return new RGBColor(red: zero, green: 85, blue: zero);
                 case 5: // Green
-                    return new RGBColor(red: _zero, green: 170, blue: _zero);
+                    return new RGBColor(red: zero, green: 170, blue: zero);
                 case 6: // Light green
-                    return new RGBColor(red: _zero, green: 255, blue: _zero);
+                    return new RGBColor(red: zero, green: 255, blue: zero);
                 case 7: // Dark blue
-                    return new RGBColor(red: _zero, green: _zero, blue: 85);
+                    return new RGBColor(red: zero, green: zero, blue: 85);
                 case 8: // Blue
-                    return new RGBColor(red: _zero, green: _zero, blue: 170);
+                    return new RGBColor(red: zero, green: zero, blue: 170);
                 case 9: // Light blue
-                    return new RGBColor(red: _zero, green: _zero, blue: 255);
+                    return new RGBColor(red: zero, green: zero, blue: 255);
                 default: // White
                     return new RGBColor(red: 255, green: 255, blue: 255);
             }
@@ -224,113 +337,6 @@ namespace ColorizeNumber
                 // Creating and returning light green color.
                 return new RGBColor(red: 144, green: 238, blue: 144);
             }
-        }
-
-        /// <summary>
-        /// Return Bitmap with using color data of given frame's array.
-        /// </summary>
-        /// <param name="frame">Frame whose RGBColor array will be used to create image.</param>
-        /// <param name="width">Width of bitmap.</param>
-        /// <param name="height">Height of bitmap.</param>
-        /// <returns>Returns bitmap.</returns>
-        [SupportedOSPlatform("windows")]
-        public static Bitmap CreateBitmap(Frame frame, int width, int height)
-        {
-            // byte array for data. Each pixels hold three components of color.
-            byte[] _dataBuffer = new byte[width * height * 3];
-
-            // RGBColor variable for loop.
-            RGBColor _rgbColor;
-
-            // Each RGBColor uses three byte length of data. This variable is multiplied index of colorList with three.
-            int _multiplier;
-
-            for (int i = 0; i < frame.ColorList.Length; i++)
-            {
-                // Index for dataBuffer.
-                _multiplier = i * 3;
-
-                // RGBColor variable.
-                _rgbColor = frame.ColorList[i];
-
-                // ! Order of RGB components is BGR instead of RGB which is alphabetical.
-
-                // Index for blue component of RGBColor.
-                _dataBuffer[_multiplier] = _rgbColor.Blue;
-
-                // Index for green component of RGBColor.
-                _dataBuffer[_multiplier + 1] = _rgbColor.Green;
-
-                // Index for red component of RGBColor.
-                _dataBuffer[_multiplier + 2] = _rgbColor.Red;
-            }
-
-            // Creating bitmap with specified width and height.
-            Bitmap _bitmap = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-
-            // Creating bitmap data with specified width and height.
-            BitmapData _bmpData = _bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, _bitmap.PixelFormat);
-
-            try
-            {
-                // Copying data from dataBuffer to bmpData with specified lenght.
-                Marshal.Copy(_dataBuffer, 0, _bmpData.Scan0, _dataBuffer.Length);
-            }
-            catch (Exception ex)
-            {
-                // Throwing exception.
-                throw ex;
-            }
-            //TODO: Free memory?
-
-            // Unlocking bits of bitmap.
-            _bitmap.UnlockBits(_bmpData);
-
-            // Returning bitmap.
-            return _bitmap;
-        }
-
-        /// <summary>
-        /// Creates Frame with using colors of Bitmap.
-        /// </summary>
-        /// <param name="bitmap">Bitmap whose colors will be used to create frame.</param>
-        /// <returns>Returns frame.</returns>
-        [SupportedOSPlatform("windows")]
-        public static Frame GetBitmap(Bitmap bitmap)
-        {
-            // Creating frame with using given bitmaps width and height.
-            Frame _frame = new Frame(resolution: bitmap.Width * bitmap.Height);
-
-            // Creating rectange with using given bitmaps width and height.
-            Rectangle _rect = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
-
-            // Creating bitmap data with lock bits.
-            BitmapData _data = bitmap.LockBits(_rect, ImageLockMode.ReadOnly, bitmap.PixelFormat);
-
-            // Getting depth of bitmap.
-            int _depth = Image.GetPixelFormatSize(_data.PixelFormat) / 8;
-
-            // Creating buffer with resolution.
-            byte[] _buffer = new byte[_data.Width * _data.Height * _depth];
-
-            // Copying pixels from bitmap's data scanning into buffer.
-            Marshal.Copy(_data.Scan0, _buffer, 0, _buffer.Length);
-
-            // Unlocking bits for bitmap.
-            bitmap.UnlockBits(_data);
-
-            // Loop for filling Colorlist of frame via buffer data.
-            for (int i = 0; i < bitmap.Width * bitmap.Height; i++)
-            {
-                // Offset data for each pixels. Depth indicates the length of data used for each pixel.
-                int _offset = i * _depth;
-
-                // Filling with creating RGBColor. Data are sorted by blue, green, red alphabetically.
-                _frame.ColorList[i] = new RGBColor(red: _buffer[_offset + 2], green: _buffer[_offset + 1], blue: _buffer[_offset + 0]);
-            }
-
-            // Returning frame.
-            return _frame;
         }
     }
 }

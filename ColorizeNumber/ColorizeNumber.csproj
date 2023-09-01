@@ -7,7 +7,7 @@
     <Title>Colorize Number - Bodrum Papatya</Title>
     <Company></Company>
     <Authors>Enes Okullu</Authors>
-    <Description>Colorize Number, helps to create image data with number-color matching actions.</Description>
+    <Description> Colorize Number, helps to create image data with number-color matching actions.</Description>
     <Copyright>Okullu</Copyright>
     <PackageTags>color; colorize; data; visualization; data-visualization</PackageTags>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
@@ -17,10 +17,12 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <AssemblyVersion>1.1.0</AssemblyVersion>
     <FileVersion>1.1.0</FileVersion>
-    <PackageReleaseNotes>Fix naming</PackageReleaseNotes>
+    <PackageReleaseNotes>v1.1.1
+Fixed naming vialotions.
+</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/meokullu/ColorizeNumber</RepositoryUrl>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
