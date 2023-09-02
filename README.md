@@ -4,6 +4,8 @@ ColorizeNumber - Bodrum Papatya is a project to visualize numeric data.
 
 ![ColorizeNumber](https://github.com/meokullu/ColorizeNumber/blob/master/ColorizeNumber/Resources/preview.png)
 
+[Check out on NuGet gallery](https://www.nuget.org/packages/ColorizeNumber/)
+
 ## Description
 
 ColorizeNumber - Bodrum Papatya helps you to visualize numeric data.
@@ -14,7 +16,7 @@ ColorizeNumber - Bodrum Papatya helps you to visualize numeric data.
 ```
 public Frame(int resolution)
 {
-    colorList = new RGBColor[resolution];
+    ColorList = new RGBColor[resolution];
 }
 ```
 
@@ -22,9 +24,9 @@ public Frame(int resolution)
 ```
  public RGBColor(byte red, byte green, byte blue)
  {
-     this.red = red;
-     this.green = green;
-     this.blue = blue;
+     this.Red = red;
+     this.Green = green;
+     this.Blue = blue;
  }
 ```
 
