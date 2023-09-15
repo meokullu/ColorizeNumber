@@ -2,8 +2,6 @@
 
 ColorizeNumber - Bodrum Papatya is a project to visualize numeric data.
 
-![ColorizeNumber](https://github.com/meokullu/ColorizeNumber/blob/master/ColorizeNumber/Resources/preview.png)
-
 [Check out on NuGet gallery](https://www.nuget.org/packages/ColorizeNumber/)
 
 ## Description
