@@ -110,6 +110,10 @@ private static RGBColor MyColorizeFunc(byte number)
 
 ## Version History
 
+* 1.2.0
+    * Multi-target frameworks (net6.0; net7.0; netstandard2.0) support is added.
+    * OutputDLL folder is removed.
+
 * 1.1.1
   * Fixed naming vialotions.
   * ColorizeNumber splitted into two partial class. Default number-color matching methods are moved to new paritial class.
