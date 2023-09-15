@@ -1,28 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFrameworks>net6.0; net7.0; netstandard2.0</TargetFrameworks>  
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <Title>Colorize Number - Bodrum Papatya</Title>
-    <Company></Company>
+    <Company>Enes Okullu</Company>
     <Authors>Enes Okullu</Authors>
     <Description> Colorize Number, helps to create image data with number-color matching actions.</Description>
-    <Copyright>Okullu</Copyright>
+    <Copyright>Enes Okullu</Copyright>
     <PackageTags>color; colorize; data; visualization; data-visualization</PackageTags>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>1.1.1</AssemblyVersion>
-    <FileVersion>1.1.1</FileVersion>
-    <PackageReleaseNotes>v1.1.1
-Fixed naming vialotions.
-</PackageReleaseNotes>
+    <AssemblyVersion>1.2.0</AssemblyVersion>
+    <FileVersion>1.2.0</FileVersion>
+    <PackageReleaseNotes>
+      v1.2.0
+      Multi-target frameworks (net6.0; net7.0; netstandard2.0) support is added.
+      OutputDLL folder is removed.
+    </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/meokullu/ColorizeNumber</RepositoryUrl>
-    <Version>1.1.1</Version>
+    <Version>1.2.0</Version>
+    <PackageProjectUrl>meokullu.github.io/ColorizeNumber/</PackageProjectUrl>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,7 +38,7 @@ Fixed naming vialotions.
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <Content Include="Resources\icon.ico" />
   </ItemGroup>
@@ -51,14 +56,6 @@ Fixed naming vialotions.
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="OutputDLL\" />
-  </ItemGroup>
-
-  <ItemGroup>
 
     <None Include="Resources\icon.ico">
       <Pack>True</Pack>
@@ -68,7 +65,11 @@ Fixed naming vialotions.
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
   </ItemGroup>
 
 </Project>
