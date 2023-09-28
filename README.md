@@ -78,10 +78,10 @@ Returns Frame which is created with given frame.
 private void TestColorizeNumber()
 {
   // Data - 25 charachters
-  string dataText = "1122334455667788990012345"
+  string dataText = "1122334455667788990012345";
 
   // Data to Frame (25 byte length)
-  Frame frame = CreateFrameFromData(dateText, 5, 5, colorizeFunction: ColorizeFunc);
+  Frame frame = CreateFrameFromData(dataText, 5, 5, colorizeFunction: ColorizeFunc);
 
   // Frame to Bitmap (5x5)
   Bitmap bitmap = CreateBitmap(frame, 5, 5);
