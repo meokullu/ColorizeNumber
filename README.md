@@ -12,9 +12,11 @@ ColorizeNumber - Bodrum Papatya helps you to visualize numeric data.
 
 ### Frame
 ```
-public Frame(int resolution)
+public Frame(int width, int height)
 {
-    ColorList = new RGBColor[resolution];
+    ColorList = new RGBColor[width * height];
+    Width = width;
+    Height = height;
 }
 ```
 
@@ -52,15 +54,11 @@ Returns RGBColor.
 
 
 ```
-CreateBitmap(Frame frame, int width, int height)
+CreateBitmap(Frame frame)
 ```
 Returns Bitmap which is filled with given colorList from frame.
 
-* Frame frame: A frame which consists array list of RGBColor.
-
-* int width: Width of bitmap.
-
-* int height: Height of bitmap.
+* Frame frame: A frame which consists array list of RGBColor, width and height.
 
 
  ```
@@ -69,7 +67,6 @@ GetBitmap(Frame frame)
 Returns Frame which is created with given frame.
 
 * Bitmap bitmap: A bitmap.
-
 
 ## Example Usage
 
@@ -81,10 +78,10 @@ private void TestColorizeNumber()
   string dataText = "1122334455667788990012345"
 
   // Data to Frame (25 byte length)
-  Frame frame = CreateFrameFromData(dateText, 5, 5, colorizeFunction: ColorizeFunc);
+  Frame frame = CreateFrameFromData(dataText, 5, 5, colorizeFunction: ColorizeFunc);
 
   // Frame to Bitmap (5x5)
-  Bitmap bitmap = CreateBitmap(frame, 5, 5);
+  Bitmap bitmap = CreateBitmap(frame);
 
   // Saving bitmap.
   bitmap.Save("./ColorizeNumberTest.bmp", ImageFormat.Bmp);
@@ -107,6 +104,12 @@ private static RGBColor MyColorizeFunc(byte number)
 ```
 
 ## Version History
+
+* 1.3.0
+    * Frame now has Width and Height properties.
+    * Frame now has a new constructor. Frame(int width, int height).
+    * [deprecated] CreateBitmap(Frame frame, int width, int height), use CreateBitmap(Frame frame) instead.
+    * [deprecated] Frame(int resolution), use Frame(int width, int height) instead
 
 * 1.2.0
     * Multi-target frameworks (net6.0; net7.0; netstandard2.0) support is added.

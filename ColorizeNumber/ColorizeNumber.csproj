@@ -15,16 +15,18 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
-    <FileVersion>1.2.0</FileVersion>
+    <AssemblyVersion>1.3.0</AssemblyVersion>
+    <FileVersion>1.3.0</FileVersion>
     <PackageReleaseNotes>
-      v1.2.0
-      Multi-target frameworks (net6.0; net7.0; netstandard2.0) support is added.
-      OutputDLL folder is removed.
+      * 1.3.0
+      * Frame now has Width and Height properties.
+      * Frame now has a new constructor. Frame(int width, int height).
+      * [deprecated] CreateBitmap(Frame frame, int width, int height), use CreateBitmap(Frame frame) instead.
+      * [deprecated] Frame(int resolution), use Frame(int width, int height) instead
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/meokullu/ColorizeNumber</RepositoryUrl>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <PackageProjectUrl>meokullu.github.io/ColorizeNumber/</PackageProjectUrl>
     <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
     <RepositoryType>git</RepositoryType>
