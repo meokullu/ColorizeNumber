@@ -1,4 +1,4 @@
-# ColorizeNumber
+## ColorizeNumber
 
 ColorizeNumber - Bodrum Papatya is a project to visualize numeric data.
 
@@ -24,6 +24,9 @@ private void TestColorizeNumber()
 
   // Saving bitmap.
   bitmap.Save("./ColorizeNumberTest.bmp", ImageFormat.Bmp);
+
+  // Alternatif saving, alpha version. It automatically saves bitmap with named as datetime in folder named "Data" https://www.nuget.org/packages/EasySaver.BitmapFile/
+  // Save(Bitmap bitmap, string "", string folderName = "Data", NamingFormat namingFormat = NamingFormat.DateTime, bool overwrite = false, bool renameIfExists = true)
 }
 ```
 
