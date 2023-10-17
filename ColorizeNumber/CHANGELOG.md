@@ -1,4 +1,4 @@
-# Changelog
+## ColorizeNumber Changelog
 
 <!--
 ## [Unreleased]
@@ -9,6 +9,9 @@
 
 ### Removed
 -->
+
+## [1.x.y] (Upcoming)
+* 
 
 ## [1.3.0]
 

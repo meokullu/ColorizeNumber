@@ -50,6 +50,9 @@ To check listed methods, example of output visit wiki page. [ColorizeNumber Wiki
 ### Version History
 See [Changelog](https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG.md)
 
+### Task list
+* Create an issue or check task list: [Issues](https://github.com/meokullu/ColorizeNumber/issues)
+
 ### Licence
 [MIT license](https://github.com/meokullu/ColorizeNumber/blob/master/LICENSE)
 
