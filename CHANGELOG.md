@@ -1,5 +1,6 @@
 # Changelog
 
+<!--
 ## [Unreleased]
 
 ### Added
@@ -7,16 +8,17 @@
 ### Changed
 
 ### Removed
+-->
 
 ## [1.3.0]
 
 ### Added
-* Frame now has Width and Height properties.
-* Frame now has a new constructor. Frame(int width, int height).
+* `Frame` now has `Width` and `Height` properties.
+* `Frame` now has a new constructor. `Frame(int width, int height)`.
 
 ### Changed
-* [deprecated] CreateBitmap(Frame frame, int width, int height), use CreateBitmap(Frame frame) instead.
-* [deprecated] Frame(int resolution), use Frame(int width, int height) instead
+* [deprecated] `CreateBitmap(Frame frame, int width, int height)`, use `CreateBitmap(Frame frame)` instead.
+* [deprecated] `Frame(int resolution)`, use `Frame(int width, int height)` instead.
 
 ## [1.2.0]
 
@@ -36,9 +38,9 @@
 ## [1.1.0]
 
 ### Added
-* Added RGBComparer.
-* Added GetBitmap() method.
-* Added ColorizeFuncByRatio() and ColorizeFuncByDuality().
+* Added `RGBColorEqualityComparer()`.
+* Added `GetBitmap()` method.
+* Added `ColorizeFuncByRatio()` and `ColorizeFuncByDuality()`.
 
 ### Changed
 * Fixed naming vialotions.
