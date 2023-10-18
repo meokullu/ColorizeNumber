@@ -1,4 +1,4 @@
-# Changelog
+## ColorizeNumber Changelog
 
 <!--
 ## [Unreleased]
@@ -9,6 +9,18 @@
 
 ### Removed
 -->
+
+## [1.3.1]
+
+### Added
+* Wiki links added under Example Usage on README.
+
+### Changed
+* `ImageLockMode.ReadWrite` changed to `ImageLockMode.WriteOnly` on `CreateBitmap()` method.
+* Suggesting to use `EasySaver.BitmapFile` package under `TestColorizeNumber()` method.
+* Hypos are fixed on README.
+* CHANGELOG link added under Version History on README.
+* CHANGELOG has cleaner view.
 
 ## [1.3.0]
 
