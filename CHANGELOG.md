@@ -10,6 +10,11 @@
 ### Removed
 -->
 
+## [Upcoming]
+
+### Changed
+* `ImageLockMode.ReadWrite` changed to `ImageLockMode.WriteOnly` on `CreateBitmap()` method.
+
 ## [1.3.1]
 
 ### Added

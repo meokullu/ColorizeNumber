@@ -315,7 +315,7 @@ namespace ColorizeNumber
             Bitmap bitmap = new Bitmap(frame.Width, frame.Height, PixelFormat.Format24bppRgb);
 
             // Creating bitmap data with specified width and height.
-            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, frame.Width, frame.Height), ImageLockMode.ReadWrite, bitmap.PixelFormat);
+            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, frame.Width, frame.Height), ImageLockMode.WriteOnly, bitmap.PixelFormat);
 
             try
             {
