@@ -19,7 +19,9 @@
     <FileVersion>1.4.0</FileVersion>
     <PackageReleaseNotes>
       v1.4.0
-      * ImageLockMode.ReadWrite changed to ImageLockMode.WriteOnly on CreateBitmap
+      * 3 new Colorize Functions.
+      * Color to RGBColor and RGBColor to Color methods are added under extensions.
+      * Provided data length on CreateFrameFromData() are now being checking with provided width and height as parameters.
       See changelog https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG.md
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>

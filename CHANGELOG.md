@@ -10,7 +10,18 @@
 ### Removed
 -->
 
-## [Upcoming]
+## [1.4.0]
+
+### Added
+* `ColorizeFuncByRedRate()` colorize function is added.
+* `ColorizeFuncByGreenRate()` colorize function is added.
+* `ColorizeFuncByBlueRate()` colorize function is added.
+* `Color` to `RGBColor` and `RGBColor` to `Color` methods are added as extensions.
+
+### Changed
+* Length checking added into `CreateFrameFromData()`. Checking compare if length of `numericText` with multiple of `width` and `height` are equal.
+* `Width` and `Height` values on `Frame` were setting after creating by construct which sets values. Additional value appending is removed.
+* Type fixed on code and README.
 
 ### Changed
 * `ImageLockMode.ReadWrite` changed to `ImageLockMode.WriteOnly` on `CreateBitmap()` method.

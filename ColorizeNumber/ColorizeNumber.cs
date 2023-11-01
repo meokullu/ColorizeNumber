@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 
@@ -157,11 +158,18 @@ namespace ColorizeNumber
         /// <exception cref="ArgumentNullException">Throws execption if colorizeFunction is not provided.</exception>
         public static Frame CreateFrameFromData(string numericText, int width, int height, Func<byte, RGBColor> colorizeFunction)
         {
-            // Checking if numbericText string is null or empty.
+            // Checking if numericText string is null or empty.
             if (string.IsNullOrEmpty(numericText))
             {
                 // Throwing an exception.
                 throw new ArgumentException($"'{nameof(numericText)}' cannot be null or empty.", nameof(numericText));
+            }
+            
+            // Checking if numeric.
+            if (numericText.Length != width * height)
+            {
+                // THrowing an exception.
+                throw new ArgumentException($"Provided numericText length is {numericText.Length} while frame resolution was set to {width * height}.");
             }
 
             // Checking if colorizeFunction is null. ColorizeFunction is essential to apply for creating color value from numeric data.
@@ -176,12 +184,6 @@ namespace ColorizeNumber
 
             // Creating a frame with given resolution. Resolution is used for specify size of the array on Frame.
             Frame frame = new Frame(width: width, height: height);
-
-            // Setting width of frame.
-            frame.Width = width;
-
-            // Setting height of frame.
-            frame.Height = height;
 
             // Loop for colorizing every value on given data.
             for (int i = 0; i < dataArray.Length; i++)
@@ -246,7 +248,7 @@ namespace ColorizeNumber
         public static RGBColor ColorizeFuncByRate(byte number)
         {
             // Creates a RGBColor based on number as percentage of color.
-            return new RGBColor(red: (byte)((double)number / 9 * 255), green: (byte)((double)number / 9 * 255), blue: (byte)((double)number / 9 * 255));
+            return new RGBColor(red: (byte)((double)number / 9 * byte.MaxValue), green: (byte)((double)number / 9 * byte.MaxValue), blue: (byte)((double)number / 9 * byte.MaxValue));
         }
 
         /// <summary>
@@ -267,6 +269,39 @@ namespace ColorizeNumber
                 // Creating and returning light green color.
                 return new RGBColor(red: 144, green: 238, blue: 144);
             }
+        }
+
+        /// <summary>
+        /// Return color by rate of red color.
+        /// </summary>
+        /// <param name="number">A number whose value will be converted to color value.</param>
+        /// <returns>Returns RGBColor.</returns>
+        public static RGBColor ColorizeFuncByRedRate(byte number)
+        {
+            // Creates a RGBColor based on number as percentage of color.
+            return new RGBColor(red: (byte)((double)number / 9 * byte.MaxValue), green: byte.MinValue, blue: byte.MinValue);
+        }
+
+        /// <summary>
+        /// Return color by rate of green color.
+        /// </summary>
+        /// <param name="number">A number whose value will be converted to color value.</param>
+        /// <returns>Returns RGBColor.</returns>
+        public static RGBColor ColorizeFuncByGreenRate(byte number)
+        {
+            // Creates a RGBColor based on number as percentage of color.
+            return new RGBColor(red: byte.MinValue, green: (byte)((double)number / 9 * byte.MaxValue), blue: byte.MinValue);
+        }
+
+        /// <summary>
+        /// Return color by rate of blue color.
+        /// </summary>
+        /// <param name="number">A number whose value will be converted to color value.</param>
+        /// <returns>Returns RGBColor.</returns>
+        public static RGBColor ColorizeFuncByBlueRate(byte number)
+        {
+            // Creates a RGBColor based on number as percentage of color.
+            return new RGBColor(red: byte.MinValue, green: byte.MinValue, blue: (byte)((double)number / 9 * byte.MaxValue));
         }
     }
 
@@ -446,6 +481,34 @@ namespace ColorizeNumber
 
             // Returning frame.
             return frame;
+        }
+    }
+
+    /// <summary>
+    /// RGBColor to Color and Color to RGBColor extension.
+    /// </summary>
+    public static class Extensions
+    {
+        /// <summary>
+        /// Transforms RGBColor to System.Drawing.Color.
+        /// </summary>
+        /// <param name="rGBColor">RGBColor.</param>
+        /// <returns>Color.</returns>
+        public static Color ToColor(this ColorizeNumber.RGBColor rGBColor)
+        {
+            // Creating and returning new Color. Color provided by System.Drawing.
+            return Color.FromArgb(red: rGBColor.Red, green: rGBColor.Green, blue: rGBColor.Blue);
+        }
+
+        /// <summary>
+        /// Transforms Color to RGBColor.
+        /// </summary>
+        /// <param name="color">Color, provided by System.Drawing.Color.</param>
+        /// <returns>RGBColor.</returns>
+        public static ColorizeNumber.RGBColor ToRGBColor(this Color color)
+        {
+            // Creating and returning new RGBColor.
+            return new ColorizeNumber.RGBColor(red: color.R, green: color.G, blue: color.B);
         }
     }
 }

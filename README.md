@@ -26,7 +26,8 @@ private void TestColorizeNumber()
   bitmap.Save("./ColorizeNumberTest.bmp", ImageFormat.Bmp);
 
   // Alternative saving, alpha version. It automatically saves bitmap with named as datetime in folder named "Data" https://www.nuget.org/packages/EasySaver.BitmapFile/
-  // Save(Bitmap bitmap, string "", string folderName = "Data", NamingFormat namingFormat = NamingFormat.DateTime, bool overwrite = false, bool renameIfExists = true)
+  // Save(Bitmap bitmap)
+  // SaveToFolder(Bitmap bitmap)
 }
 ```
 
@@ -38,7 +39,7 @@ private static RGBColor MyColorizeFunc(byte number)
   {
     return new RGBColor(red: 255, green: 255, blue: 255);
   }
-  else // If number is 5,6,7,8,9 returns black color.
+  else // If number is 5, 6, 7, 8, 9 returns black color.
   {
     return new RGBColor(red: 0, green: 0, blue: 0);
   }
