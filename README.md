@@ -1,4 +1,5 @@
 ## ColorizeNumber
+[![ColorizeNumber](https://img.shields.io/nuget/v/ColorizeNumber.svg)](https://www.nuget.org/packages/ColorizeNumber/) [![ColorizeNumber](https://img.shields.io/nuget/dt/ColorizeNumber.svg)](https://www.nuget.org/packages/ColorizeNumber/) [![License](https://img.shields.io/github/license/meokullu/ColorizeNumber.svg)](https://github.com/meokullu/ColorizeNumber/blob/master/LICENSE)
 
 ColorizeNumber - Bodrum Papatya is a project to visualize numeric data.
 
@@ -55,10 +56,13 @@ See [Changelog](https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG
 * Create an issue or check task list: [Issues](https://github.com/meokullu/ColorizeNumber/issues)
 
 ### Licence
-[MIT license](https://github.com/meokullu/ColorizeNumber/blob/master/LICENSE)
+This repository is licensed under the "MIT" license. See [MIT license](https://github.com/meokullu/ColorizeNumber/blob/master/LICENSE).
 
-### Authors
-Twitter: Enes Okullu [@enesokullu](https://twitter.com/EnesOkullu)
+### Authors & Contributing
+
+If you'd like to contribute, then contribute. <!-- [contributing guide](CONTRIBUTING.md). -->
+
+[![Contributors](https://contrib.rocks/image?repo=meokullu/ColorizeNumber)](https://github.com/meokullu/ColorizeNumber/graphs/contributors)
 
 ### Help
 Twitter: Enes Okullu [@enesokullu](https://twitter.com/EnesOkullu)
