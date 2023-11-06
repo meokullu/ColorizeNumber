@@ -17,7 +17,7 @@ namespace ColorizeNumber
         #region Class definitons
 
         /// <summary>
-        /// Frame holds array of RGBColors.
+        /// Frame holds array of <see cref="RGBColor"/>.
         /// </summary>
         public class Frame
         {
@@ -311,7 +311,7 @@ namespace ColorizeNumber
     public partial class ColorizeNumber
     {
         /// <summary>
-        /// Return Bitmap with using color data of given frame's array.
+        /// Return Bitmap with using color data of given <see cref="Frame"/>'s array.
         /// </summary>
         /// <param name="frame">Frame whose RGBColor array will be used to create image.</param>
         /// <returns>Returns bitmap.</returns>
@@ -490,7 +490,7 @@ namespace ColorizeNumber
     public static class Extensions
     {
         /// <summary>
-        /// Transforms RGBColor to System.Drawing.Color.
+        /// Transforms RGBColor to <see cref="System.Drawing.Color"/>.
         /// </summary>
         /// <param name="rGBColor">RGBColor.</param>
         /// <returns>Color.</returns>
@@ -501,7 +501,7 @@ namespace ColorizeNumber
         }
 
         /// <summary>
-        /// Transforms Color to RGBColor.
+        /// Transforms <see cref="System.Drawing.Color"/> to RGBColor.
         /// </summary>
         /// <param name="color">Color, provided by System.Drawing.Color.</param>
         /// <returns>RGBColor.</returns>
