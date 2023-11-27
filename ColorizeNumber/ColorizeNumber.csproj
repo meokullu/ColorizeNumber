@@ -15,18 +15,16 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>1.4.1</AssemblyVersion>
-    <FileVersion>1.4.1</FileVersion>
+    <AssemblyVersion>1.5.0</AssemblyVersion>
+    <FileVersion>1.5.0</FileVersion>
     <PackageReleaseNotes>
-      v1.4.1
-      * New design for README.
-      * New design for CHANGELOG.
-      * Adding references for Color, Frame on method summaries.
+      v1.5.0
+      * Obsolote method and constructor are removed (`CreateBitmap(Frame frame, int width, int height)` and `Frame(int resolution)`)
       See changelog https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG.md
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/meokullu/ColorizeNumber</RepositoryUrl>
-    <Version>1.4.1</Version>
+    <Version>1.5.0</Version>
     <PackageProjectUrl>meokullu.github.io/ColorizeNumber/</PackageProjectUrl>
     <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
     <RepositoryType>git</RepositoryType>
