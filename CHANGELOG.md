@@ -11,6 +11,30 @@
 #### Removed
 -->
 
+### [1.5.0]
+
+#### Changed
+* Discussion table's links were fixed for ColorizeNumber.
+
+#### Removed
+* `Frame(int width, int height)` constructor was added on v1.3.0 and `Frame(int resolution)` constructor was marked as obsolote. It is now removed.
+* `CreateBitmap(Frame frame, int width, int height)` method was marked obsolote on v1.3.0 and `CreateBitmap(Frame frame)` was introduced on same version. Since `Frame` class now has `Width` and `Height`, `CreateBitmap(Frame frame, int width, int height)` method is now removed.
+
+### [1.4.1]
+
+#### Added
+* CONTRIBUTING guide is added.
+* Discussions guide is added.
+* SECURITY guide is added.
+* CODE_OF_CONDUCT guide is added.
+* New design for CHANGELOG.
+* New design for README.
+
+#### Changed
+* Summaries now have method and class refere
+* New design of README.
+* CHANGELOG design fixes.
+
 ### [1.4.0]
 
 #### Added

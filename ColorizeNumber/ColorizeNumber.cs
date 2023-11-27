@@ -39,17 +39,6 @@ namespace ColorizeNumber
             /// <summary>
             /// Constructor with size of array.
             /// </summary>
-            /// <param name="resolution">Resolution of the frame. It is size of array which is multiplied width and height.</param>
-            [Obsolete("Use Frame(int width, int height) instead.")]
-            public Frame(int resolution)
-            {
-                // Set an array of RGBColor with specified size.
-                ColorList = new RGBColor[resolution];
-            }
-
-            /// <summary>
-            /// Constructor with size of array.
-            /// </summary>
             /// <param name="width">Width of frame</param>
             /// <param name="height">Height of frame</param>
             public Frame(int width, int height)
@@ -351,70 +340,6 @@ namespace ColorizeNumber
 
             // Creating bitmap data with specified width and height.
             BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, frame.Width, frame.Height), ImageLockMode.WriteOnly, bitmap.PixelFormat);
-
-            try
-            {
-                // Copying data from dataBuffer to bmpData with specified lenght.
-                Marshal.Copy(dataBuffer, 0, bmpData.Scan0, dataBuffer.Length);
-            }
-            catch (Exception ex)
-            {
-                // Throwing exception.
-                throw ex;
-            }
-            //TODO: Free memory?
-
-            // Unlocking bits of bitmap.
-            bitmap.UnlockBits(bmpData);
-
-            // Returning bitmap.
-            return bitmap;
-        }
-
-        /// <summary>
-        /// Return Bitmap with using color data of given frame's array.
-        /// </summary>
-        /// <param name="frame">Frame whose RGBColor array will be used to create image.</param>
-        /// <param name="width">Width of bitmap.</param>
-        /// <param name="height">Height of bitmap.</param>
-        /// <returns>Returns bitmap.</returns>
-        [Obsolete("Use CreateBitmap(Frame frame).")]
-        public static Bitmap CreateBitmap(Frame frame, int width, int height)
-        {
-            // byte array for data. Each pixels hold three components of color.
-            byte[] dataBuffer = new byte[width * height * 3];
-
-            // RGBColor variable for loop.
-            RGBColor rgbColor;
-
-            // Each RGBColor uses three byte length of data. This variable is multiplied index of colorList with three.
-            int multiplier;
-
-            for (int i = 0; i < frame.ColorList.Length; i++)
-            {
-                // Index for dataBuffer.
-                multiplier = i * 3;
-
-                // RGBColor variable.
-                rgbColor = frame.ColorList[i];
-
-                // ! Order of RGB components is BGR instead of RGB which is alphabetical.
-
-                // Index for blue component of RGBColor.
-                dataBuffer[multiplier] = rgbColor.Blue;
-
-                // Index for green component of RGBColor.
-                dataBuffer[multiplier + 1] = rgbColor.Green;
-
-                // Index for red component of RGBColor.
-                dataBuffer[multiplier + 2] = rgbColor.Red;
-            }
-
-            // Creating bitmap with specified width and height.
-            Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
-
-            // Creating bitmap data with specified width and height.
-            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.WriteOnly, bitmap.PixelFormat);
 
             try
             {
