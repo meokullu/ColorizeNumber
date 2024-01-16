@@ -11,6 +11,15 @@
 #### Removed
 -->
 
+### [1.6.0]
+
+#### Added
+* New constructor `Frame(int width, int height, RGBColor[] colorList)` is added.
+* New default ColorizeFuncMidTones(byte number) is added. This method uses tonnes of aqua, yellow and fuchsia based on given specified number.
+
+#### Changed
+* New social preview on README.
+
 ### [1.5.0]
 
 #### Changed
