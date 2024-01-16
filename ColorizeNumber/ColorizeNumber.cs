@@ -37,10 +37,10 @@ namespace ColorizeNumber
             public int Height;
 
             /// <summary>
-            /// Constructor with size of array.
+            /// Constructor with size of array with width and height values.
             /// </summary>
-            /// <param name="width">Width of frame</param>
-            /// <param name="height">Height of frame</param>
+            /// <param name="width">Width of frame.</param>
+            /// <param name="height">Height of frame.</param>
             public Frame(int width, int height)
             {
                 // Set an array of RGBColor with specified size.
@@ -49,7 +49,25 @@ namespace ColorizeNumber
                 // Setting width.
                 Width = width;
 
-                // Settinh height.
+                // Setting height.
+                Height = height;
+            }
+
+            /// <summary>
+            /// Constructor with size of array with width and height values.
+            /// </summary>
+            /// <param name="width">Width of frame</param>
+            /// <param name="height">Height of frame</param>
+            /// <param name="colorList"></param>
+            public Frame(int width, int height, RGBColor[] colorList)
+            {
+                // Setting ColorList array with specified colorList values.
+                ColorList = colorList;
+
+                // Setting width.
+                Width = width;
+
+                // Setting height.
                 Height = height;
             }
         }
@@ -225,6 +243,44 @@ namespace ColorizeNumber
                 case 9: // Light blue
                     return new RGBColor(red: zero, green: zero, blue: 255);
                 default: // White
+                    return new RGBColor(red: 255, green: 255, blue: 255);
+            }
+        }
+
+        /// <summary>
+        /// Returns mid-tone color based on digit.
+        /// </summary>
+        /// <param name="number">A number whose value will be converted to color value.</param>
+        /// <returns>Returns RGBColor.</returns>
+        public static RGBColor ColorizeFuncMidTones(byte number)
+        {
+            // Zero value.
+            const byte zero = 0;
+
+            // Switch case for every number on base 10, with default case.
+            switch (number)
+            {
+                case 0: // Black
+                    return new RGBColor(red: zero, green: zero, blue: zero);
+                case 1: // Aqua
+                    return new RGBColor(red: 85, green: 85, blue: zero);
+                case 2: // Aqua
+                    return new RGBColor(red: 170, green: 170, blue: zero);
+                case 3: // Aqua
+                    return new RGBColor(red: 255, green: 255, blue: zero);
+                case 4: // Yellow
+                    return new RGBColor(red: zero, green: 85, blue: 85);
+                case 5: // Yellow
+                    return new RGBColor(red: zero, green: 170, blue: 170);
+                case 6: // Yellow
+                    return new RGBColor(red: zero, green: 255, blue: 255);
+                case 7: // Fuchsia
+                    return new RGBColor(red: 85, green: zero, blue: 85);
+                case 8: // Fuchsia
+                    return new RGBColor(red: 170, green: zero, blue: 170);
+                case 9: // Fuchsia
+                    return new RGBColor(red: 255, green: zero, blue: 255);
+                default: // Black
                     return new RGBColor(red: 255, green: 255, blue: 255);
             }
         }
