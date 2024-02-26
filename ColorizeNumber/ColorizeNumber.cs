@@ -107,6 +107,18 @@ namespace ColorizeNumber
             }
 
             /// <summary>
+            /// Constructor of RGBColor.
+            /// </summary>
+            /// <param name="color">Color to create RGBColor.</param>
+            public RGBColor(Color color)
+            {
+                // Assigning values.
+                this.Red = color.R;
+                this.Green = color.G;
+                this.Blue = color.B;
+            }
+
+            /// <summary>
             /// RGBColor equality comparer derived from IEqualityComparer interface.
             /// </summary>
             public class RGBColorEqualityComparer : IEqualityComparer<RGBColor>
@@ -160,7 +172,7 @@ namespace ColorizeNumber
         /// <param name="width">Width of frame.</param>
         /// <param name="height">Height of frame.</param>
         /// <param name="colorizeFunction"></param>
-        /// <returns>Returns frame.</returns>
+        /// <returns>Returns a frame.</returns>
         /// <exception cref="ArgumentException">Throws expection if numberText data is null or empty.</exception>
         /// <exception cref="ArgumentNullException">Throws execption if colorizeFunction is not provided.</exception>
         public static Frame CreateFrameFromData(string numericText, int width, int height, Func<byte, RGBColor> colorizeFunction)
@@ -171,7 +183,7 @@ namespace ColorizeNumber
                 // Throwing an exception.
                 throw new ArgumentException($"'{nameof(numericText)}' cannot be null or empty.", nameof(numericText));
             }
-            
+
             // Checking if numeric.
             if (numericText.Length != width * height)
             {
@@ -198,6 +210,80 @@ namespace ColorizeNumber
                 // Assigning value of array with color value by colorize function.
                 frame.ColorList[i] = colorizeFunction((byte)dataArray[i]);
             }
+
+            // Returning frame.
+            return frame;
+        }
+
+        /// <summary>
+        /// Returns a frame with randomly distrubited colors provided by colorlist.
+        /// </summary>
+        /// <param name="colorList">Array of RGBColor which will be used to create frame with its items.</param>
+        /// <param name="width">Width of frame.</param>
+        /// <param name="height">Height of frame.</param>
+        /// <returns>Returns a frame.</returns>
+        public static Frame CreateFrameRandomly(RGBColor[] colorList, int width, int height)
+        {
+            // Checking if provided colorList is null or empty.
+            if (colorList == null || colorList.Length == 0)
+            {
+                // Throwing an exception to indicate colorList is null or empty.
+                throw new ArgumentException($"'{nameof(colorList)}' cannot be null or empty.", nameof(colorList));
+            }
+
+            // Create a random.
+            Random random = new Random();
+
+            // Creating new RGBColor array with specified resolution size.
+            RGBColor[] newColorList = new RGBColor[width * height];
+
+            // Loop to distrubite provided colors randomly to each pixels.
+            for (int i = 0; i < width * height; i++)
+            {
+                // Setting color into new array from provided color array randomly.
+                newColorList[i] = colorList[random.Next(colorList.Length)];
+            }
+
+            // Creating a new frame with specified width, height and colorList.
+            Frame frame = new Frame(width: width, height: height, colorList: newColorList);
+
+            // Returning frame.
+            return frame;
+        }
+
+        /// <summary>
+        /// Returns a frame with randomly colors.
+        /// </summary>
+        /// <param name="width">Width of frame.</param>
+        /// <param name="height">Height of frame.</param>
+        /// <returns>Returns a frame.</returns>
+        public static Frame CreateFrameRandomly(int width, int height)
+        {
+            // Creating new RGBColor array with specified resolution size.
+            RGBColor[] colorList = new RGBColor[width * height];
+
+            // Create a random.
+            Random random = new Random();
+
+            // Function to create random color.
+            RGBColor RandomColor()
+            {
+                // Creating a RGBColor with random red, green and blue values.
+                RGBColor rgbColor = new RGBColor(red: (byte)random.Next(0, 255), green: (byte)random.Next(0, 255), blue: (byte)random.Next(0, 255));
+
+                // Returning created RGBColor.
+                return rgbColor;
+            }
+
+            // Loop to distrubite provided colors randomly to each pixels.
+            for (int i = 0; i < width * height; i++)
+            {
+                // Setting color randomly.
+                colorList[i] = RandomColor();
+            }
+
+            // Creating a new frame with specified width, height and colorList.
+            Frame frame = new Frame(width: width, height: height, colorList: colorList);
 
             // Returning frame.
             return frame;

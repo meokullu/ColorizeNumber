@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0; net7.0; netstandard2.0</TargetFrameworks>  
+    <TargetFrameworks>net6.0; net7.0; netstandard2.0; net461;</TargetFrameworks>  
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <Title>Colorize Number - Bodrum Papatya</Title>
@@ -15,17 +15,17 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>1.6.0</AssemblyVersion>
-    <FileVersion>1.6.0</FileVersion>
+    <AssemblyVersion>1.7.0</AssemblyVersion>
+    <FileVersion>1.7.0</FileVersion>
     <PackageReleaseNotes>
-      v1.6.0
-      * New constructor `Frame(int width, int height, RGBColor[] colorList)` is added.
-      * New default ColorizeFuncMidTones(byte number) is added. This method uses tonnes of aqua, yellow and fuchsia based on given specified number.
+      v1.7.0
+      * Added support for net461.
+      
       See changelog https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG.md
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/meokullu/ColorizeNumber</RepositoryUrl>
-    <Version>1.6.0</Version>
+    <Version>1.7.0</Version>
     <PackageProjectUrl>meokullu.github.io/ColorizeNumber/</PackageProjectUrl>
     <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
     <RepositoryType>git</RepositoryType>
@@ -74,7 +74,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+    
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'netstandard2.0'" />
+    
   </ItemGroup>
 
 </Project>
