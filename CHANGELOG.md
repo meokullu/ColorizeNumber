@@ -11,6 +11,14 @@
 #### Removed
 -->
 
+### [1.7.0]
+
+#### Added
+* Added support for net461.
+* New RGBColor(Color color) constructor is added.
+* New CreateFrameRandomly(int width, int height) method is added.
+* New CreateFrameRandomly(RGBColor[] colorList, int width, int height) method is added.
+
 ### [1.6.0]
 
 #### Added
