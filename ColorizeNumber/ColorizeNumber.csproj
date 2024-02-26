@@ -20,7 +20,10 @@
     <PackageReleaseNotes>
       v1.7.0
       * Added support for net461.
-      
+      * New RGBColor(Color color) constructor is added.
+      * New CreateFrameRandomly(int width, int height) method is added.
+      * New CreateFrameRandomly(RGBColor[] colorList, int width, int height) method is added.
+
       See changelog https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG.md
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
