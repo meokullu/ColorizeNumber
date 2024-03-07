@@ -14,7 +14,7 @@ ColorizeNumber - Bodrum Papatya helps you to visualize numeric data.
 ### Example Usage
 
 ```
-private void TestColorizeNumber()
+void TestColorizeNumber()
 {
   // Data - 25 charachters
   string dataText = "1122334455667788990012345";
@@ -28,15 +28,30 @@ private void TestColorizeNumber()
   // Saving bitmap.
   bitmap.Save("./ColorizeNumberTest.bmp", ImageFormat.Bmp);
 
-  // Alternative saving method, beta version. It automatically saves bitmap with specified naming format such time, date, datetime and given name under folder with specified name such as "Data" https://www.nuget.org/packages/EasySaver.BitmapFile/
+  // EasySaver.BitmapFile is providing saving methods for bitmap files.
+  // It automatically saves bitmap with specified naming formats.
+  // https://github.com/meokullu/EasySaver/tree/master/EasySaver.BitmapFile
+  // https://www.nuget.org/packages/EasySaver.BitmapFile/
   // Save(Bitmap bitmap)
   // SaveToFolder(Bitmap bitmap)
 }
 ```
 
+```
+CreateFrameRandomly(RGBColor[] colorList, int width, int height)
+```
+
+![2024-02-26-07-53-44-759](https://github.com/meokullu/ColorizeNumber/assets/4971757/fe66bb0b-6235-4d80-808e-66488f4999f6)
+
+```
+CreateFrameRandomly(int width, int height)
+```
+
+![2024-02-26-07-54-08-927](https://github.com/meokullu/ColorizeNumber/assets/4971757/c4d12b40-bdb0-4efa-ba01-cc182242dece)
+
 ### Build your own colorize function.
 ```
-private static RGBColor MyColorizeFunc(byte number)
+RGBColor MyColorizeFunc(byte number)
 {
   if (number < 5) // If number is 0, 1, 2, 3, 4 returns white color.
   {
