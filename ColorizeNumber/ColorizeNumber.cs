@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
+using static ColorizeNumber.ColorizeNumber;
 
 namespace ColorizeNumber
 {
@@ -161,6 +161,107 @@ namespace ColorizeNumber
                     return Tuple.Create(obj.Red, obj.Green, obj.Blue).GetHashCode();
                 }
             }
+
+            /// <summary>
+            /// RGBColor equality comparer derived from IComparer interface.
+            /// </summary>
+            public class RGBColorComparer : IComparer<RGBColor>
+            {
+                /// <summary>
+                /// Compares two RGBColor based on hash values.
+                /// </summary>
+                /// <param name="x">First RGBColor to compare.</param>
+                /// <param name="y">Second RGBColor to compare.</param>
+                /// <returns>Integer value of comparasion.</returns>
+                /// <exception cref="ArgumentNullException"></exception>
+                public int Compare(RGBColor x, RGBColor y)
+                {
+                    return x == null || y == null
+                        ? throw new ArgumentNullException()
+                        : object.ReferenceEquals(x, y) ? 0 : x.GetHashCode() < y.GetHashCode() ? -1 : x.GetHashCode() > y.GetHashCode() ? +1 : 0;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Class sets minimum and maximum values of red, green and blue elements of RGBColor.
+        /// </summary>
+        public class RandomColorLimit
+        {
+            /// <summary>
+            /// Minimum red value. Default 0.
+            /// </summary>
+            public byte RedMin = byte.MinValue;
+
+            /// <summary>
+            /// Maximum red value. Default 0.
+            /// </summary>
+            public byte RedMax = byte.MaxValue;
+
+            /// <summary>
+            /// Minimum green value. Default 0.
+            /// </summary>
+            public byte GreenMin = byte.MinValue;
+
+            /// <summary>
+            /// Maximum green value. Default 0.
+            /// </summary>
+            public byte GreenMax = byte.MaxValue;
+
+            /// <summary>
+            /// Minimum blue value. Default 0.
+            /// </summary>
+            public byte BlueMin = byte.MinValue;
+
+            /// <summary>
+            /// Maximum blue value. Default 0.
+            /// </summary>
+            public byte BlueMax = byte.MaxValue;
+
+            /// <summary>
+            /// Constructor for RandomColorLimit. Minimum values of each come from byte.MinValue which is 0.
+            /// </summary>
+            /// <param name="redMax">Value for red.</param>
+            /// <param name="greenMax">Value for green.</param>
+            /// <param name="blueMax">Value for blue.</param>
+            public RandomColorLimit(byte redMax, byte greenMax, byte blueMax)
+            {
+                // Red element minimum and maximum values.
+                this.RedMin = byte.MinValue;
+                this.RedMax = redMax;
+
+                // Green element minimum and maximum values.
+                this.GreenMin = byte.MinValue;
+                this.GreenMax = greenMax;
+
+                // Blue element minimum and maximum values.
+                this.BlueMin = byte.MinValue;
+                this.BlueMax = blueMax;
+            }
+
+            /// <summary>
+            /// Constructor for RandomColorLimit.
+            /// </summary>
+            /// <param name="redMin">Minimum value for red.</param>
+            /// <param name="redMax">Minimum value for red.</param>
+            /// <param name="greenMin">Minimum value for green.</param>
+            /// <param name="greenMax">Minimum value for green.</param>
+            /// <param name="blueMin">Minimum value for blue.</param>
+            /// <param name="blueMax">Minimum value for blue.</param>
+            public RandomColorLimit(byte redMin, byte redMax, byte greenMin, byte greenMax, byte blueMin, byte blueMax)
+            {
+                // Red element minimum and maximum values.
+                this.RedMin = redMin;
+                this.RedMax = redMax;
+
+                // Green element minimum and maximum values.
+                this.GreenMin = greenMin;
+                this.GreenMax = greenMax;
+
+                // Blue element minimum and maximum values.
+                this.BlueMin = blueMin;
+                this.BlueMax = blueMax;
+            }
         }
 
         #endregion Class definitions
@@ -199,7 +300,7 @@ namespace ColorizeNumber
             }
 
             // Creating int array from string with changing char value to int value.
-            int[] dataArray = numericText.Select(p => (int)char.GetNumericValue(p)).ToArray();
+            byte[] dataArray = numericText.Select(p => (byte)char.GetNumericValue(p)).ToArray();
 
             // Creating a frame with given resolution. Resolution is used for specify size of the array on Frame.
             Frame frame = new Frame(width: width, height: height);
@@ -208,11 +309,37 @@ namespace ColorizeNumber
             for (int i = 0; i < dataArray.Length; i++)
             {
                 // Assigning value of array with color value by colorize function.
-                frame.ColorList[i] = colorizeFunction((byte)dataArray[i]);
+                frame.ColorList[i] = colorizeFunction(dataArray[i]);
             }
 
             // Returning frame.
             return frame;
+        }
+
+        // Create a random.
+        static Random random = new Random();
+
+        /// <summary>
+        /// Return random RGBColor.
+        /// </summary>
+        /// <returns>RGBColor.</returns>
+        public static RGBColor GetRandomColor()
+        {
+            // Creating a RGBColor with random red, green and blue values.
+            RGBColor rgbColor = new RGBColor(red: (byte)random.Next(byte.MinValue, byte.MaxValue), green: (byte)random.Next(byte.MinValue, byte.MaxValue), blue: (byte)random.Next(byte.MinValue, byte.MaxValue));
+
+            // Returning created RGBColor.
+            return rgbColor;
+        }
+
+        /// <summary>
+        /// Return random RGBColor based on limits.
+        /// </summary>
+        /// <returns>RGBColor.</returns>
+        public static RGBColor GetRandomColor(RandomColorLimit limits)
+        {
+            // Creating and returning a RGBColor with random red, green and blue values.
+            return new RGBColor(red: (byte)random.Next(limits.RedMin, limits.RedMax), green: (byte)random.Next(limits.GreenMin, limits.GreenMax), blue: (byte)random.Next(limits.BlueMin, limits.BlueMax));
         }
 
         /// <summary>
@@ -222,6 +349,7 @@ namespace ColorizeNumber
         /// <param name="width">Width of frame.</param>
         /// <param name="height">Height of frame.</param>
         /// <returns>Returns a frame.</returns>
+        [Obsolete("Use CreateFrameRandomly(int width, int height, RGBColor[] colorList)")]
         public static Frame CreateFrameRandomly(RGBColor[] colorList, int width, int height)
         {
             // Checking if provided colorList is null or empty.
@@ -262,28 +390,77 @@ namespace ColorizeNumber
             // Creating new RGBColor array with specified resolution size.
             RGBColor[] colorList = new RGBColor[width * height];
 
-            // Create a random.
-            Random random = new Random();
-
-            // Function to create random color.
-            RGBColor RandomColor()
+            // Loop to distrubite provided colors randomly to each pixels.
+            for (int i = 0; i < width * height; i++)
             {
-                // Creating a RGBColor with random red, green and blue values.
-                RGBColor rgbColor = new RGBColor(red: (byte)random.Next(0, 255), green: (byte)random.Next(0, 255), blue: (byte)random.Next(0, 255));
-
-                // Returning created RGBColor.
-                return rgbColor;
+                // Setting color randomly.
+                colorList[i] = GetRandomColor(limits: new RandomColorLimit(byte.MinValue, byte.MaxValue, byte.MinValue, byte.MaxValue, byte.MinValue, byte.MaxValue));
             }
+
+            // Creating a new frame with specified width, height and colorList.
+            Frame frame = new Frame(width: width, height: height, colorList: colorList);
+
+            // Returning frame.
+            return frame;
+        }
+
+        /// <summary>
+        /// Creates and returns a frame which its colors randomly created.
+        /// </summary>
+        /// <param name="width">Width of frame.</param>
+        /// <param name="height">Height of frame.</param>
+        /// <param name="limits">Minimum and maximum values for red, green and blue elements of RGBColor.</param>
+        /// <returns>Frame</returns>
+        public static Frame CreateFrameRandomly(int width, int height, RandomColorLimit limits)
+        {
+            // Creating new RGBColor array with specified resolution size.
+            RGBColor[] colorList = new RGBColor[width * height];
 
             // Loop to distrubite provided colors randomly to each pixels.
             for (int i = 0; i < width * height; i++)
             {
                 // Setting color randomly.
-                colorList[i] = RandomColor();
+                colorList[i] = GetRandomColor(limits: limits);
             }
 
             // Creating a new frame with specified width, height and colorList.
             Frame frame = new Frame(width: width, height: height, colorList: colorList);
+
+            // Returning frame.
+            return frame;
+        }
+
+        /// <summary>
+        /// Returns a frame with randomly distrubited colors provided by colorlist.
+        /// </summary>
+        /// <param name="width">Width of frame.</param>
+        /// <param name="height">Height of frame.</param>
+        /// <param name="colorList">Array of RGBColor which will be used to create frame with its items.</param>
+        /// <returns>Returns a frame.</returns>
+        public static Frame CreateFrameRandomly(int width, int height, RGBColor[] colorList)
+        {
+            // Checking if provided colorList is null or empty.
+            if (colorList == null || colorList.Length == 0)
+            {
+                // Throwing an exception to indicate colorList is null or empty.
+                throw new ArgumentException($"'{nameof(colorList)}' cannot be null or empty.", nameof(colorList));
+            }
+
+            // Create a random.
+            Random random = new Random();
+
+            // Creating new RGBColor array with specified resolution size.
+            RGBColor[] newColorList = new RGBColor[width * height];
+
+            // Loop to distrubite provided colors randomly to each pixels.
+            for (int i = 0; i < width * height; i++)
+            {
+                // Setting color into new array from provided color array randomly.
+                newColorList[i] = colorList[random.Next(colorList.Length)];
+            }
+
+            // Creating a new frame with specified width, height and colorList.
+            Frame frame = new Frame(width: width, height: height, colorList: newColorList);
 
             // Returning frame.
             return frame;
@@ -576,6 +753,70 @@ namespace ColorizeNumber
         {
             // Creating and returning new RGBColor.
             return new ColorizeNumber.RGBColor(red: color.R, green: color.G, blue: color.B);
+        }
+
+        /// <summary>
+        /// Transforms array of <see cref="RGBColor"/> to array of <see cref="byte"/>.
+        /// </summary>
+        /// <param name="rgbColorArray">Array of RGBColor.</param>
+        /// <returns>Byte array.</returns>
+        public static byte[] ToByteArray(this RGBColor[] rgbColorArray)
+        {
+            // byte array for data. Each pixels hold three components of color.
+            byte[] dataBuffer = new byte[rgbColorArray.Length * 3];
+
+            // RGBColor variable for loop.
+            RGBColor rgbColor;
+
+            // Each RGBColor uses three byte length of data. This variable is multiplied index of colorList with three.
+            int multiplier;
+
+            //
+            for (int i = 0; i < rgbColorArray.Length; i++)
+            {
+                // Index for dataBuffer.
+                multiplier = i * 3;
+
+                // RGBColor variable.
+                rgbColor = rgbColorArray[i];
+
+                // ! Order of RGB components is BGR instead of RGB which is alphabetical.
+
+                // Index for blue component of RGBColor.
+                dataBuffer[multiplier] = rgbColor.Blue;
+
+                // Index for green component of RGBColor.
+                dataBuffer[multiplier + 1] = rgbColor.Green;
+
+                // Index for red component of RGBColor.
+                dataBuffer[multiplier + 2] = rgbColor.Red;
+            }
+
+            // Returning of result array.
+            return dataBuffer;
+        }
+
+        /// <summary>
+        /// Transforms array of <see cref="byte"/> to array of <see cref="RGBColor"/>.
+        /// </summary>
+        /// <param name="byteArray">Array of byte.</param>
+        /// <returns>RGBColor array.</returns>
+        public static RGBColor[] ToRGBColorArray(this byte[] byteArray)
+        {
+            // RGBColor variable for loop.
+            RGBColor[] rgbColorArray = new RGBColor[byteArray.Length / 3];
+
+            // Loop for array
+            for (int i = 0; i < byteArray.Length; i = i + 3)
+            {
+                // ! Order of RGB components is BGR instead of RGB which is alphabetical.
+
+                // Setting index of array with creating RGBColor.
+                rgbColorArray[i / 3] = new RGBColor(red: byteArray[i + 2], green: byteArray[i + 1], blue: byteArray[i]);
+            }
+
+            // Returning of result array.
+            return rgbColorArray;
         }
     }
 }

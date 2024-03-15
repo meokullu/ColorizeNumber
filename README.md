@@ -14,7 +14,7 @@ ColorizeNumber - Bodrum Papatya helps you to visualize numeric data.
 ### Example Usage
 
 ```
-void TestColorizeNumber()
+TestColorizeNumber()
 {
   // Data - 25 charachters
   string dataText = "1122334455667788990012345";
@@ -35,6 +35,9 @@ void TestColorizeNumber()
   // Save(Bitmap bitmap)
   // SaveToFolder(Bitmap bitmap)
 }
+```
+```
+CreateFrameRandomly(int width, int height);
 ```
 
 ```
@@ -62,6 +65,9 @@ RGBColor MyColorizeFunc(byte number)
     return new RGBColor(red: 0, green: 0, blue: 0);
   }
 }
+```
+```
+GetRandomColor();
 ```
 
 To check listed methods, example of output visit wiki page. [ColorizeNumber Wiki](https://github.com/meokullu/ColorizeNumber/wiki/Home)

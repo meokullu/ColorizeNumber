@@ -11,8 +11,23 @@
 #### Removed
 -->
 
-### [1.7.0]
+### [1.8.0]
+#### Added
+* `GetRandomColor()` method is added.
+* `GetRandomColor(RandomColorLimit randomColorLimit)` method is added.
+* `RandomColorLimit` class is added.
+* `RandomColorLimit(byte redMax, byte greenMax, byte blueMax)` constructor is added for `RandomColorLimit`.
+* `RandomColorLimit(byte red redMin, byte redMax, byte greenMin, byte greenMax, byte blueMin, byte blueMax)` constructor is added for `RandomColorLimit`.
+* `CreateFrameRandomly(int width, int height, RandomColorLimit limits)` method is added.
+* `RGBColorComparer` is added which derived from `IComparer<RGBColor>`.
+* `ToByteArray(this RGBColor[] rgbColorArray)` extension method is added.
+* `ToRGBColorArray(this byte[] byteArray)` extension method is added.
 
+#### Changed
+* `CreateFrameRandomly(RGBColor[] colorList, int width, int height)` is obsolote now. Use `CreateFrameRandomly(int width, int height, RGBColor[] colorList)` instead.
+* `CreateFrameFromData` method now uses `byte[]` array instead of `int[]` array.
+
+### [1.7.0]
 #### Added
 * Added support for net461.
 * New RGBColor(Color color) constructor is added.
@@ -20,7 +35,6 @@
 * New CreateFrameRandomly(RGBColor[] colorList, int width, int height) method is added.
 
 ### [1.6.0]
-
 #### Added
 * New constructor `Frame(int width, int height, RGBColor[] colorList)` is added.
 * New default ColorizeFuncMidTones(byte number) is added. This method uses tonnes of aqua, yellow and fuchsia based on given specified number.
@@ -29,7 +43,6 @@
 * New social preview on README.
 
 ### [1.5.0]
-
 #### Changed
 * Discussion table's links were fixed for ColorizeNumber.
 
@@ -38,7 +51,6 @@
 * `CreateBitmap(Frame frame, int width, int height)` method was marked obsolote on v1.3.0 and `CreateBitmap(Frame frame)` was introduced on same version. Since `Frame` class now has `Width` and `Height`, `CreateBitmap(Frame frame, int width, int height)` method is now removed.
 
 ### [1.4.1]
-
 #### Added
 * CONTRIBUTING guide is added.
 * Discussions guide is added.
@@ -53,7 +65,6 @@
 * CHANGELOG design fixes.
 
 ### [1.4.0]
-
 #### Added
 * `ColorizeFuncByRedRate()` colorize function is added.
 * `ColorizeFuncByGreenRate()` colorize function is added.
@@ -69,7 +80,6 @@
 * `ImageLockMode.ReadWrite` changed to `ImageLockMode.WriteOnly` on `CreateBitmap()` method.
 
 ### [1.3.1]
-
 #### Added
 * Wiki links added under Example Usage on README.
 
@@ -81,7 +91,6 @@
 * CHANGELOG has cleaner view.
 
 ### [1.3.0]
-
 #### Added
 * `Frame` now has `Width` and `Height` properties.
 * `Frame` now has a new constructor. `Frame(int width, int height)`.
@@ -91,7 +100,6 @@
 * [deprecated] `Frame(int resolution)`, use `Frame(int width, int height)` instead.
 
 ### [1.2.0]
-
 #### Added
 * Multi-target frameworks (net6.0; net7.0; netstandard2.0) support is added.
 
@@ -99,14 +107,12 @@
 * OutputDLL folder is removed.
 
 ### [1.1.1]
-
 #### Changed
 * Fixed naming vialotions.
 * ColorizeNumber splitted into two partial class. Default number-color matching methods are moved to new paritial class.
 * ColorizeNumber.dll and ColorizeNumber.xml in OutputDLL folder is updated.
 
 ### [1.1.0]
-
 #### Added
 * Added `RGBColorEqualityComparer()`.
 * Added `GetBitmap()` method.
