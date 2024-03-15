@@ -7,28 +7,23 @@
     <Title>Colorize Number - Bodrum Papatya</Title>
     <Company>Enes Okullu</Company>
     <Authors>Enes Okullu</Authors>
-    <Description> Colorize Number, helps to create image data with number-color matching actions.</Description>
+    <Description> Colorize Number, helps to create image data with number-color matching actions or randomly.</Description>
     <Copyright>Enes Okullu</Copyright>
-    <PackageTags>color; colorize; data; visualization; data-visualization</PackageTags>
+    <PackageTags>color; colors; colorize; data; visualization; data-visualization; vizualize-data</PackageTags>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>1.7.0</AssemblyVersion>
-    <FileVersion>1.7.0</FileVersion>
+    <AssemblyVersion>1.8.0</AssemblyVersion>
+    <FileVersion>1.8.0</FileVersion>
     <PackageReleaseNotes>
-      v1.7.0
-      * Added support for net461.
-      * New RGBColor(Color color) constructor is added.
-      * New CreateFrameRandomly(int width, int height) method is added.
-      * New CreateFrameRandomly(RGBColor[] colorList, int width, int height) method is added.
-
+      v1.8.0 Random color, random frame, transition of byte and RGBColor array, RGBColor comparer, minor improvements.
       See changelog https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG.md
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/meokullu/ColorizeNumber</RepositoryUrl>
-    <Version>1.7.0</Version>
+    <Version>1.8.0</Version>
     <PackageProjectUrl>meokullu.github.io/ColorizeNumber/</PackageProjectUrl>
     <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
     <RepositoryType>git</RepositoryType>
