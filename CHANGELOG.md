@@ -11,6 +11,10 @@
 #### Removed
 -->
 
+### [1.8.1]
+#### Changed
+* Partial classes of ColorizeNumber divided into files based on its purpose.
+
 ### [1.8.0]
 #### Added
 * `GetRandomColor()` method is added.
@@ -30,14 +34,14 @@
 ### [1.7.0]
 #### Added
 * Added support for net461.
-* New RGBColor(Color color) constructor is added.
-* New CreateFrameRandomly(int width, int height) method is added.
-* New CreateFrameRandomly(RGBColor[] colorList, int width, int height) method is added.
+* New `RGBColor(Color color)` constructor is added.
+* New `CreateFrameRandomly(int width, int height)` method is added.
+* New `CreateFrameRandomly(RGBColor[] colorList, int width, int height)` method is added.
 
 ### [1.6.0]
 #### Added
 * New constructor `Frame(int width, int height, RGBColor[] colorList)` is added.
-* New default ColorizeFuncMidTones(byte number) is added. This method uses tonnes of aqua, yellow and fuchsia based on given specified number.
+* New default `ColorizeFuncMidTones(byte number)` is added. This method uses tonnes of aqua, yellow and fuchsia based on given specified number.
 
 #### Changed
 * New social preview on README.
@@ -60,7 +64,7 @@
 * New design for README.
 
 #### Changed
-* Summaries now have method and class refere
+* Summaries now have method and class referrings.
 * New design of README.
 * CHANGELOG design fixes.
 
