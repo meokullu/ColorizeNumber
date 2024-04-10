@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ColorizeNumber
+﻿namespace ColorizeNumber
 {
     /// <summary>
     /// This class offers default number-color matching methods.

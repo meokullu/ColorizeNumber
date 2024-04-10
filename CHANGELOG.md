@@ -11,6 +11,16 @@
 #### Removed
 -->
 
+### [1.9.0]
+#### Changed
+* Removed and sorting usings.
+* Fixing naming inconvention for static variable under RandomColor.cs.
+* Removed unnecessary variable on `GetRandomColor()` method under RandomColor.cs.
+* Improving on method summaries.
+
+#### Deleted
+* `CreateFrameRandomly(RGBColor[] colorList, int width, int height)` was obsolote on v1.8.0. It is removed with this version.
+
 ### [1.8.1]
 #### Changed
 * Partial classes of ColorizeNumber divided into files based on its purpose.

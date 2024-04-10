@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ColorizeNumber
 {
@@ -109,43 +106,6 @@ namespace ColorizeNumber
                 // Assigning value of array with color value by colorize function.
                 frame.ColorList[i] = colorizeFunction(dataArray[i]);
             }
-
-            // Returning frame.
-            return frame;
-        }
-
-        /// <summary>
-        /// Returns a frame with randomly distrubited colors provided by colorlist.
-        /// </summary>
-        /// <param name="colorList">Array of RGBColor which will be used to create frame with its items.</param>
-        /// <param name="width">Width of frame.</param>
-        /// <param name="height">Height of frame.</param>
-        /// <returns>Returns a frame.</returns>
-        [Obsolete("Use CreateFrameRandomly(int width, int height, RGBColor[] colorList)")]
-        public static Frame CreateFrameRandomly(RGBColor[] colorList, int width, int height)
-        {
-            // Checking if provided colorList is null or empty.
-            if (colorList == null || colorList.Length == 0)
-            {
-                // Throwing an exception to indicate colorList is null or empty.
-                throw new ArgumentException($"'{nameof(colorList)}' cannot be null or empty.", nameof(colorList));
-            }
-
-            // Create a random.
-            Random random = new Random();
-
-            // Creating new RGBColor array with specified resolution size.
-            RGBColor[] newColorList = new RGBColor[width * height];
-
-            // Loop to distrubite provided colors randomly to each pixels.
-            for (int i = 0; i < width * height; i++)
-            {
-                // Setting color into new array from provided color array randomly.
-                newColorList[i] = colorList[random.Next(colorList.Length)];
-            }
-
-            // Creating a new frame with specified width, height and colorList.
-            Frame frame = new Frame(width: width, height: height, colorList: newColorList);
 
             // Returning frame.
             return frame;
