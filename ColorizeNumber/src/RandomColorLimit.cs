@@ -14,37 +14,37 @@ namespace ColorizeNumber
         public class RandomColorLimit
         {
             /// <summary>
-            /// Minimum red value. Default 0.
+            /// Minimum red value. Default value is <see cref="byte.MinValue"/> which is 0.
             /// </summary>
             public byte RedMin = byte.MinValue;
 
             /// <summary>
-            /// Maximum red value. Default 0.
+            /// Maximum red value. Default value is <see cref="byte.MinValue"/> which is 0.
             /// </summary>
             public byte RedMax = byte.MaxValue;
 
             /// <summary>
-            /// Minimum green value. Default 0.
+            /// Minimum green value. Default value is <see cref="byte.MinValue"/> which is 0.
             /// </summary>
             public byte GreenMin = byte.MinValue;
 
             /// <summary>
-            /// Maximum green value. Default 0.
+            /// Maximum green value. Default value is <see cref="byte.MinValue"/> which is 0.
             /// </summary>
             public byte GreenMax = byte.MaxValue;
 
             /// <summary>
-            /// Minimum blue value. Default 0.
+            /// Minimum blue value. Default value is <see cref="byte.MinValue"/> which is 0.
             /// </summary>
             public byte BlueMin = byte.MinValue;
 
             /// <summary>
-            /// Maximum blue value. Default 0.
+            /// Maximum blue value. Default value is <see cref="byte.MinValue"/> which is 0.
             /// </summary>
             public byte BlueMax = byte.MaxValue;
 
             /// <summary>
-            /// Constructor for RandomColorLimit. Minimum values of each come from byte.MinValue which is 0.
+            /// Constructor for RandomColorLimit. Minimum values of each come from <see cref="byte.MinValue"/> which is 0.
             /// </summary>
             /// <param name="redMax">Value for red.</param>
             /// <param name="greenMax">Value for green.</param>

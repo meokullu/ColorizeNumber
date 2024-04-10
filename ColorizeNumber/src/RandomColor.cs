@@ -9,7 +9,7 @@ namespace ColorizeNumber
     public partial class ColorizeNumber
     {
         // Create a random.
-        static Random random = new Random();
+        static Random s_random = new Random();
 
         /// <summary>
         /// Return random RGBColor.
@@ -17,21 +17,18 @@ namespace ColorizeNumber
         /// <returns>RGBColor.</returns>
         public static RGBColor GetRandomColor()
         {
-            // Creating a RGBColor with random red, green and blue values.
-            RGBColor rgbColor = new RGBColor(red: (byte)random.Next(byte.MinValue, byte.MaxValue), green: (byte)random.Next(byte.MinValue, byte.MaxValue), blue: (byte)random.Next(byte.MinValue, byte.MaxValue));
-
-            // Returning created RGBColor.
-            return rgbColor;
+            // Creating and returning a RGBColor with random red, green and blue values.
+            return new RGBColor(red: (byte)s_random.Next(byte.MinValue, byte.MaxValue), green: (byte)s_random.Next(byte.MinValue, byte.MaxValue), blue: (byte)s_random.Next(byte.MinValue, byte.MaxValue)); ;
         }
 
         /// <summary>
-        /// Return random RGBColor based on limits.
+        /// Return random RGBColor based on <see cref="RandomColorLimit"/> limits.
         /// </summary>
         /// <returns>RGBColor.</returns>
         public static RGBColor GetRandomColor(RandomColorLimit limits)
         {
             // Creating and returning a RGBColor with random red, green and blue values.
-            return new RGBColor(red: (byte)random.Next(limits.RedMin, limits.RedMax), green: (byte)random.Next(limits.GreenMin, limits.GreenMax), blue: (byte)random.Next(limits.BlueMin, limits.BlueMax));
+            return new RGBColor(red: (byte)s_random.Next(limits.RedMin, limits.RedMax), green: (byte)s_random.Next(limits.GreenMin, limits.GreenMax), blue: (byte)s_random.Next(limits.BlueMin, limits.BlueMax));
         }
     }
 }
