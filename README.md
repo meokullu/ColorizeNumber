@@ -41,7 +41,7 @@ CreateFrameRandomly(int width, int height);
 ```
 
 ```
-CreateFrameRandomly(RGBColor[] colorList, int width, int height)
+CreateFrameRandomly(int width, int height, RGBColor[] colorList)
 ```
 
 ![2024-02-26-07-53-44-759](https://github.com/meokullu/ColorizeNumber/assets/4971757/fe66bb0b-6235-4d80-808e-66488f4999f6)
@@ -69,7 +69,9 @@ RGBColor MyColorizeFunc(byte number)
 ```
 GetRandomColor();
 ```
-
+```
+GetRandomColor(RandomColorLimit limits)
+```
 To check listed methods, example of output visit wiki page. [ColorizeNumber Wiki](https://github.com/meokullu/ColorizeNumber/wiki/Home)
 
 ### Version History

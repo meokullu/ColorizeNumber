@@ -12,6 +12,10 @@
 -->
 
 ### [1.9.0]
+#### Added
+* `Equals(RGBColor x, RGBColor y)` method is added to compare two RGBColor.
+* `GetColorRepeatance(Frame frame)` and `GetColorRepeatance(Frame frame, ParallelOptions parallelOptions)` methods are added. These two methods return `List<Tuple<RGBColor, int>>` value which is list of tuple items that consists RGBColor and number of its repeatence in given frame.
+
 #### Changed
 * Removed and sorting usings.
 * Fixing naming inconvention for static variable under RandomColor.cs.
