@@ -118,6 +118,33 @@ namespace ColorizeNumber
                         : object.ReferenceEquals(x, y) ? 0 : x.GetHashCode() < y.GetHashCode() ? -1 : x.GetHashCode() > y.GetHashCode() ? +1 : 0;
                 }
             }
+
+            /// <summary>
+            /// Compares two RGBColors.
+            /// </summary>
+            /// <param name="x">First color to compare.</param>
+            /// <param name="y">Second color to compare.</param>
+            /// <returns>True or false depends on comparasion.</returns>
+            public static bool Equals(RGBColor x, RGBColor y)
+            {
+                // Checking if either of color is null.
+                if (x == null || y == null)
+                {
+                    // Returning false to indicate at least one of colors is null.
+                    return false;
+                }
+                // Checking if two given color's property values are same.
+                else if (x.Red == y.Red && x.Green == y.Green && x.Blue == y.Blue)
+                {
+                    // Returning true to indicate colors are same.
+                    return true;
+                }
+                else
+                {
+                    // Returning false to indicate colors are different.
+                    return false;
+                }
+            }
         }
     }
 }
