@@ -11,6 +11,13 @@
 #### Removed
 -->
 
+### [1.10.0]
+#### Added
+* `ColorizeFuncByMagenta`, `ColorizeFuncByCyan` and `ColorizeFuncByYellow` colorize functions added to be used for `CreateFrameFromData(string numericText, int width, int height, Func<byte, RGBColor> colorizeFunction)` method.
+
+#### Changed
+* `CreateBitmap(Frame frame)` method now check `frame`'s `width` and `height` with length of `colorList` length on frame.
+
 ### [1.9.0]
 #### Added
 * `Equals(RGBColor x, RGBColor y)` method is added to compare two RGBColor.

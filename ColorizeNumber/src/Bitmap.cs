@@ -17,6 +17,12 @@ namespace ColorizeNumber
         /// <returns>Returns bitmap.</returns>
         public static Bitmap CreateBitmap(Frame frame)
         {
+            // Size check for colorList's length and frame dimensions.
+            if (frame.ColorList.Length != frame.Width * frame.Height)
+            {
+                throw new ArgumentOutOfRangeException($"Colorlist length {frame.ColorList.Length} doesn't match with frame's dimensions. Width: {frame.Width} Height: {frame.Height} ");
+            }
+
             // byte array for data. Each pixels hold three components of color.
             byte[] dataBuffer = new byte[frame.Width * frame.Height * 3];
 
@@ -62,7 +68,6 @@ namespace ColorizeNumber
                 // Throwing exception.
                 throw ex;
             }
-            //TODO: Free memory?
 
             // Unlocking bits of bitmap.
             bitmap.UnlockBits(bmpData);
