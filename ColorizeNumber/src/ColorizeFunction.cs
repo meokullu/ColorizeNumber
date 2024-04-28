@@ -144,5 +144,37 @@
             // Creates a RGBColor based on number as percentage of color.
             return new RGBColor(red: byte.MinValue, green: byte.MinValue, blue: (byte)((double)number / 9 * byte.MaxValue));
         }
+
+        /// <summary>
+        /// Return color by rate of magenta (red-blue) color.
+        /// </summary>
+        /// <param name="number">A number whose value will be converted to color value.</param>
+        /// <returns>Returns RGBColor.</returns>
+        public static RGBColor ColorizeFuncByMagentaRate(byte number)
+        {
+            // Creates a RGBColor based on number as percentage of color.
+            return new RGBColor(red: (byte)((double)number / 9 * byte.MaxValue), green: byte.MinValue, blue: (byte)((double)number / 9 * byte.MaxValue));
+        }
+
+        /// <summary>
+        /// Return color by rate of yellow (red-green) color.
+        /// </summary>
+        /// <param name="number">A number whose value will be converted to color value.</param>
+        /// <returns>Returns RGBColor.</returns>
+        public static RGBColor ColorizeFuncByYellowRate(byte number)
+        {
+            // Creates a RGBColor based on number as percentage of color.
+            return new RGBColor(red: (byte)((double)number / 9 * byte.MaxValue), green: (byte)((double)number / 9 * byte.MaxValue), byte.MinValue);
+        }
+
+        /// <summary>
+        /// Return color by rate of cyan (green-blue) color.
+        /// </summary>
+        /// <param name="number">A number whose value will be converted to color value.</param>
+        /// <returns>Returns RGBColor.</returns>
+        public static RGBColor ColorizeFuncByCyanRate(byte number)
+        {
+            return new RGBColor(red: byte.MinValue, green: (byte)((double)number / 9 * byte.MaxValue), blue: (byte)((double)number / 9 * byte.MaxValue));
+        }
     }
 }
