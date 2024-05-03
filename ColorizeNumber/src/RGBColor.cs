@@ -56,6 +56,17 @@ namespace ColorizeNumber
             }
 
             /// <summary>
+            /// Override of ToString() as "R:{Red}-G:{Green}-B:{Blue}".
+            /// </summary>
+            /// <returns>String value.</returns>
+            public override string ToString()
+            {
+                return $"R:{Red}-G:{Green}-B:{Blue}";
+            }
+
+            #region Comparer & Equality comparer
+
+            /// <summary>
             /// RGBColor equality comparer derived from IEqualityComparer interface.
             /// </summary>
             public class RGBColorEqualityComparer : IEqualityComparer<RGBColor>
@@ -119,6 +130,8 @@ namespace ColorizeNumber
                 }
             }
 
+            #endregion Comparer & Equality comparer
+
             /// <summary>
             /// Compares two RGBColors.
             /// </summary>
@@ -144,6 +157,30 @@ namespace ColorizeNumber
                     // Returning false to indicate colors are different.
                     return false;
                 }
+            }
+
+            /// <summary>
+            /// Compares two RGBColor and returns similarity by their elements' differences. Lower value indicates higher similarity.
+            /// </summary>
+            /// <param name="x">First RGBColor.</param>
+            /// <param name="y">Second RGBColor.</param>
+            /// <returns>Avarage byte values of differences.</returns>
+            public static byte GetRGBColorSimilarity(RGBColor x, RGBColor y)
+            {
+                // Getting avarage differences of red, green and blue values.
+                return (byte)(((Math.Abs(x.Red - y.Red) + Math.Abs(x.Green - y.Green) + Math.Abs(x.Blue - y.Blue))) / 3);
+            }
+
+            /// <summary>
+            /// Compares two RGBColor and return similarity rate by their elements' differences. Higher value indicates highger similarity.
+            /// </summary>
+            /// <param name="x">First RGBColor.</param>
+            /// <param name="y">Second RGBColor.</param>
+            /// <returns>Rate of avarege value of differences.</returns>
+            public static double GetRGBColorSimilarityRate(RGBColor x, RGBColor y)
+            {
+                // Getting avarage differences of red, green and blue values then use it to indicate percentage.
+                return ((double)(Math.Abs(x.Red - y.Red) + Math.Abs(x.Green - y.Green) + Math.Abs(x.Blue - y.Blue)) * 100 / 3) / 255;
             }
         }
     }
