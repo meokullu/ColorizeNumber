@@ -15,18 +15,18 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>1.10.0</AssemblyVersion>
-    <FileVersion>1.10.0</FileVersion>
+    <AssemblyVersion>1.11.0</AssemblyVersion>
+    <FileVersion>1.11.0</FileVersion>
     <PackageReleaseNotes>
-      v1.10.0
-      * ColorizeFuncByMagenta, ColorizeFuncByCyan and ColorizeFuncByYellow colorize functions added to be used for CreateFrameFromData(string numericText, int width, int height, FuncXbyte, RGBColor=""X colorizeFunction) method.
-      * CreateBitmap(Frame frame) method now check frame's width and height with length of colorList length on frame.
-
+      v1.11.0
+      * GetRGBColorSimilarity(RGBColor x, RGBColor y) method is added. This method compares two RGBColor color values and returns similarity by their elements' differences. Lower value indicates higher similarity.
+      * GetRGBColorSimilarityRate(RGBColor x, RGBColor y) method is added.
+      * ToString() override method is added. It returns as "R:{Red}-G:{Green}-B:{Blue}".
       See changelog https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG.md
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/meokullu/ColorizeNumber</RepositoryUrl>
-    <Version>1.10.0</Version>
+    <Version>1.11.0</Version>
     <PackageProjectUrl>meokullu.github.io/ColorizeNumber/</PackageProjectUrl>
     <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
     <RepositoryType>git</RepositoryType>

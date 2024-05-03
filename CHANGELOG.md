@@ -11,6 +11,12 @@
 #### Removed
 -->
 
+#### [1.11.0]
+#### Added
+* `GetRGBColorSimilarity(RGBColor x, RGBColor y)` method is added. This method compares two `RGBColor` color values and returns similarity by their elements' differences. Lower value indicates higher similarity.
+* `GetRGBColorSimilarityRate(RGBColor x, RGBColor y)` method is added.
+* `ToString()` override method is added. It returns as "R:{Red}-G:{Green}-B:{Blue}".
+
 ### [1.10.0]
 #### Added
 * `ColorizeFuncByMagenta`, `ColorizeFuncByCyan` and `ColorizeFuncByYellow` colorize functions added to be used for `CreateFrameFromData(string numericText, int width, int height, Func<byte, RGBColor> colorizeFunction)` method.
