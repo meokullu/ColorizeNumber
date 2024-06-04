@@ -9,7 +9,7 @@ namespace ColorizeNumber
     public partial class ColorizeNumber
     {
         // Create a random.
-        static Random s_random = new Random();
+        private static Random s_random = new Random();
 
         /// <summary>
         /// Return random RGBColor.
