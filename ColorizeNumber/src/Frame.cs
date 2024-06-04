@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace ColorizeNumber
 {
     public partial class ColorizeNumber
     {
+        #region Frame class
+
         /// <summary>
         /// Frame holds array of <see cref="RGBColor"/>.
         /// </summary>
@@ -61,6 +65,10 @@ namespace ColorizeNumber
             }
         }
 
+        #endregion Frame class
+
+        #region Create frame from data
+
         /// <summary>
         /// Returns a frame with changing numeric value from given numericText via provided colorizeFunction.
         /// </summary>
@@ -110,6 +118,10 @@ namespace ColorizeNumber
             // Returning frame.
             return frame;
         }
+
+        #endregion Create frame from data
+
+        #region Create frame randomly
 
         /// <summary>
         /// Returns a frame with randomly colors.
@@ -163,7 +175,7 @@ namespace ColorizeNumber
         }
 
         /// <summary>
-        /// Returns a frame with randomly distrubited colors provided by colorlist.
+        /// Returns a frame with randomly distributed colors provided by colorlist.
         /// </summary>
         /// <param name="width">Width of frame.</param>
         /// <param name="height">Height of frame.</param>
@@ -197,5 +209,77 @@ namespace ColorizeNumber
             // Returning frame.
             return frame;
         }
+
+        /// <summary>
+        /// Returns a frame with randomly distributed color provided by color repeatence data.
+        /// </summary>
+        /// <param name="width">Width of frame.</param>
+        /// <param name="height">Height of frame.</param>
+        /// <param name="repeatenceData">Color repeatence data which provided by GetColorRepeatence() method.</param>
+        /// <returns>Returns a frame.</returns>
+        public static Frame CreateFrameRandomly(int width, int height, List<Tuple<RGBColor, int>> repeatenceData)
+        {
+            // Creating array of RGBColor.
+            RGBColor[] colorArray = new RGBColor[width * height];
+
+            // Index to iterate count of repeatence.
+            int innerIndex = 0;
+
+            // Variable for repeatence item.
+            Tuple<RGBColor, int> repeatenceItem;
+
+            // Loop for color repeatence data.
+            for (int i = 0; i < repeatenceData.Count; i++)
+            {
+                // set repeatence item from the array.
+                repeatenceItem = repeatenceData[i];
+
+                // Loop for color repeatence count.
+                for (int j = 0; j < repeatenceItem.Item2; j++)
+                {
+                    // Set color array with repeatence item.
+                    colorArray[innerIndex] = repeatenceItem.Item1;
+
+                    // Increase index.
+                    innerIndex++;
+                }
+            }
+
+            // Shuffle color array. It uses Random class. In need of increase randomness, other ways could be used.
+            Shuffle(colorArray);
+
+            // Creating a Frame with shuffled color array.
+            return new Frame(width, height, colorArray);
+        }
+
+        #endregion Create frame randomly
+
+        #region Shuffle color array
+
+        private static void Shuffle<RGBColor>(RGBColor[] array)
+        {
+            // Creating instance of Random class.
+            Random rng = new Random();
+
+            // Gets array's length to iterate through while loop.
+            int n = array.Length;
+
+            // Loop while reaching the end.
+            while (n > 1)
+            {
+                // Decrease index to next.
+                n--;
+
+                // Select random index to choose for swap.
+                int k = rng.Next(n + 1);
+
+                // Swapping RGBColor based on random index.
+                RGBColor value = array[k];
+                array[k] = array[n];
+                array[n] = value;
+            }
+        }
+
+        #endregion Shuffle color array
     }
 }

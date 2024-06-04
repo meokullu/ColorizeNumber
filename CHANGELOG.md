@@ -11,6 +11,10 @@
 #### Removed
 -->
 
+#### [1.12.0]
+### Added
+* `CreateFrameRandomly(int width, int height, List<Tuple<RGBColor, int>> repeatenceData)` method is added. This method creates a frame which provided color repeantence data is used to randomly distributed colors.
+
 #### [1.11.0]
 #### Added
 * `GetRGBColorSimilarity(RGBColor x, RGBColor y)` method is added. This method compares two `RGBColor` color values and returns similarity by their elements' differences. Lower value indicates higher similarity.
