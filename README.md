@@ -5,11 +5,18 @@ ColorizeNumber - Bodrum Papatya is a project to visualize numeric data.
 
 ![SocialPreview](https://github.com/meokullu/ColorizeNumber/assets/4971757/ba6c05fb-eb6e-452f-b6a5-55b71aa146db)
 
+### Description
+ColorizeNumber - Bodrum Papatya helps you to visualize numeric data.
+
+### How to download
+Release: [Latest release](https://github.com/meokullu/ColorizeNumber/releases/latest)
+
 [Download on NuGet gallery](https://www.nuget.org/packages/ColorizeNumber/)
 
-### Description
-
-ColorizeNumber - Bodrum Papatya helps you to visualize numeric data.
+.NET CLI:
+```
+dotnet add package ColorizeNumber
+```
 
 ### Example Usage
 
@@ -72,6 +79,13 @@ GetRandomColor();
 ```
 GetRandomColor(RandomColorLimit limits)
 ```
+> [!TIP]
+> To save reporting result easily, you can use EasySaver.BitmapFile.
+```
+dotnet add package EasySaver.BitmapFile
+```
+
+
 To check listed methods, example of output visit wiki page. [ColorizeNumber Wiki](https://github.com/meokullu/ColorizeNumber/wiki/Home)
 
 ### Version History
