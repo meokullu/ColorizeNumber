@@ -15,17 +15,16 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>1.12.1</AssemblyVersion>
-    <FileVersion>1.12.1</FileVersion>
+    <AssemblyVersion>1.13.0</AssemblyVersion>
+    <FileVersion>1.13.0</FileVersion>
     <PackageReleaseNotes>
-      v1.12.1
-      * Removed unused usings.
-      See changelog https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG.md
-    
-    </PackageReleaseNotes>
+		v1.13.0
+		* Performance enchanment on methods of colorize functions.[#33](https://github.com/meokullu/ColorizeNumber/issues/33)
+		See changelog https://github.com/meokullu/ColorizeNumber/blob/master/CHANGELOG.md
+	</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/meokullu/ColorizeNumber</RepositoryUrl>
-    <Version>1.12.1</Version>
+    <Version>1.13.0</Version>
     <PackageProjectUrl>meokullu.github.io/ColorizeNumber/</PackageProjectUrl>
     <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
     <RepositoryType>git</RepositoryType>

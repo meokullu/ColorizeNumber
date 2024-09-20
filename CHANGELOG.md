@@ -11,6 +11,24 @@
 #### Removed
 -->
 
+### [1.13.0]
+#### Changed
+Following methods now use constant values to improve their performance. [#33](https://github.com/meokullu/ColorizeNumber/issues/33)
+* `ColorizeFunc(byte number)` method's performance improved by using const values. (+80%)
+* `ColorizeFuncMidtones(byte number)` method's performance improved by using const values. (+80%)
+* `ColorizeFuncByRate(byte number)` method's performance improved by using const values.
+* `ColorizeFuncByDuality(byte number)` method's performance improved by using const values. (+80%)
+* `ColorizeFuncByRedRate(byte number)` method's performance improved by using const values. (+80%)
+* `ColorizeFuncByGreenRate(byte number)` method's performance improved by using const values. (+80%)
+* `ColorizeFuncByBlueRate(byte number)` method's performance improved by using const values. (+80%)
+* `ColorizeFuncByMagentaRate(byte number)` method's performance improved by using const values. (+80%)
+* `ColorizeFuncByYellowRate(byte number)` method's performance improved by using const values. (+80%)
+* `ColorizeFuncByCyanRate(byte number)` method's performance improved by using const values. (+80%)
+
+### [1.12.1]
+#### Changed
+* Removed unused usings.
+
 #### [1.12.0]
 ### Added
 * `CreateFrameRandomly(int width, int height, List<Tuple<RGBColor, int>> repeatenceData)` method is added. This method creates a frame which provided color repeantence data is used to randomly distributed colors.
