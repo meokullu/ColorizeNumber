@@ -11,6 +11,11 @@
 #### Removed
 -->
 
+### [1.14.0]
+### Added
+* `GetRGBColorSimilarityBy3D(RGBColor x, RGBColor y)` method added.
+* `GetRGBColorSimilarityRateBy3D(RGBColor x, RGBColor y)` method added.
+
 ### [1.13.0]
 #### Changed
 Following methods now use constant values to improve their performance. [#33](https://github.com/meokullu/ColorizeNumber/issues/33)
