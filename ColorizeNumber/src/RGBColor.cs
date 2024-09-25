@@ -156,6 +156,8 @@ namespace ColorizeNumber
                 }
             }
 
+            #region Color similarities
+
             /// <summary>
             /// Compares two RGBColor and returns similarity by their elements' differences. Lower value indicates higher similarity.
             /// </summary>
@@ -179,6 +181,42 @@ namespace ColorizeNumber
                 // Getting avarage differences of red, green and blue values then use it to indicate percentage.
                 return ((double)(Math.Abs(x.Red - y.Red) + Math.Abs(x.Green - y.Green) + Math.Abs(x.Blue - y.Blue)) * 100 / 3) / 255;
             }
+
+            /// <summary>
+            /// Compares two RGBColor and returns similarity by their elements' 3D differences. Lower value indicates higher similarity.
+            /// </summary>
+            /// <param name="x">First RGBColor.</param>
+            /// <param name="y">Second RGBColor.</param>
+            /// <returns>Avarage byte values of differences. [0-255]</returns>
+            public static byte GetRGBColorSimilarityBy3D(RGBColor x, RGBColor y)
+            {
+                // Getting avarage difference of summary of square of red, green and blue values.
+                return ((byte)Math.Sqrt(
+                    (
+                    Math.Pow(Math.Abs(x.Red - y.Red), 2) + 
+                    Math.Pow(Math.Abs(x.Green - y.Green), 2) + 
+                    Math.Pow(Math.Abs(x.Blue - y.Blue), 2)) / 3) 
+                    );
+            }
+
+            /// <summary>
+            /// Compares two RGBColor and return similarity rate by their elements' 3D differences. Higher value indicates highger similarity.
+            /// </summary>
+            /// <param name="x">First RGBColor.</param>
+            /// <param name="y">Second RGBColor.</param>
+            /// <returns>Rate of avarege value of differences. [1.00-100.00]</returns>
+            public static double GetRGBColorSimilarityRateBy3D(RGBColor x, RGBColor y)
+            {
+                // Getting avarage difference of summary of square of red, green and blue values then use it to indicate percentage.
+                return
+                    Math.Sqrt(
+                    (Math.Pow(Math.Abs(x.Red - y.Red), 2) + 
+                    Math.Pow(Math.Abs(x.Green - y.Green), 2) + 
+                    Math.Pow(Math.Abs(x.Blue - y.Blue), 2))
+                    / 3) * 100 / 255;
+            }
+
+            #endregion Color similarities
         }
     }
 }
