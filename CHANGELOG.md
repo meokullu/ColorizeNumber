@@ -11,8 +11,13 @@
 #### Removed
 -->
 
+### [1.14.1]
+#### Changed
+* Fixed method summary on `GetRGBColorSimilarityRateBy3D(RGBColor x, RGBColor y)`.
+* Improved method summary on `GetRGBColorSimilarityRate`.
+
 ### [1.14.0]
-### Added
+#### Added
 * `GetRGBColorSimilarityBy3D(RGBColor x, RGBColor y)` method added.
 * `GetRGBColorSimilarityRateBy3D(RGBColor x, RGBColor y)` method added.
 

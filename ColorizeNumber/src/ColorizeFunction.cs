@@ -6,7 +6,7 @@
     public partial class ColorizeNumber
     {
         private const byte _zero = 0;
-        private const byte _oneThird =85;
+        private const byte _oneThird = 85;
         private const byte _twoThird = 170;
         private const byte _byteMax = 255;
         private const double _ratioToTen = (double)_byteMax / 9;
@@ -185,7 +185,7 @@
         public static RGBColor ColorizeFuncByGreenRate(byte number)
         {
             // Creates a RGBColor based on number as percentage of color.
-            return new RGBColor(red: _zero, green: (byte)(number *_ratioToTen), blue: _zero);
+            return new RGBColor(red: _zero, green: (byte)(number * _ratioToTen), blue: _zero);
         }
 
         /// <summary>
