@@ -175,7 +175,7 @@ namespace ColorizeNumber
             /// </summary>
             /// <param name="x">First RGBColor.</param>
             /// <param name="y">Second RGBColor.</param>
-            /// <returns>Rate of avarege value of differences.</returns>
+            /// <returns>Rate of avarege value of differences.  [0.00-100.00]</returns>
             public static double GetRGBColorSimilarityRate(RGBColor x, RGBColor y)
             {
                 // Getting avarage differences of red, green and blue values then use it to indicate percentage.
@@ -193,9 +193,9 @@ namespace ColorizeNumber
                 // Getting avarage difference of summary of square of red, green and blue values.
                 return ((byte)Math.Sqrt(
                     (
-                    Math.Pow(Math.Abs(x.Red - y.Red), 2) + 
-                    Math.Pow(Math.Abs(x.Green - y.Green), 2) + 
-                    Math.Pow(Math.Abs(x.Blue - y.Blue), 2)) / 3) 
+                    Math.Pow(Math.Abs(x.Red - y.Red), 2) +
+                    Math.Pow(Math.Abs(x.Green - y.Green), 2) +
+                    Math.Pow(Math.Abs(x.Blue - y.Blue), 2)) / 3)
                     );
             }
 
@@ -204,14 +204,14 @@ namespace ColorizeNumber
             /// </summary>
             /// <param name="x">First RGBColor.</param>
             /// <param name="y">Second RGBColor.</param>
-            /// <returns>Rate of avarege value of differences. [1.00-100.00]</returns>
+            /// <returns>Rate of avarege value of differences. [0.00-100.00]</returns>
             public static double GetRGBColorSimilarityRateBy3D(RGBColor x, RGBColor y)
             {
                 // Getting avarage difference of summary of square of red, green and blue values then use it to indicate percentage.
                 return
                     Math.Sqrt(
-                    (Math.Pow(Math.Abs(x.Red - y.Red), 2) + 
-                    Math.Pow(Math.Abs(x.Green - y.Green), 2) + 
+                    (Math.Pow(Math.Abs(x.Red - y.Red), 2) +
+                    Math.Pow(Math.Abs(x.Green - y.Green), 2) +
                     Math.Pow(Math.Abs(x.Blue - y.Blue), 2))
                     / 3) * 100 / 255;
             }
